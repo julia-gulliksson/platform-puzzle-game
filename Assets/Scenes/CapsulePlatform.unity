@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 291894903}
   - component: {fileID: 291894902}
   - component: {fileID: 291894907}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291894901}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9f6b21dbc7bd0d54b854d8c89ceedd88, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -350,6 +350,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckTransform: {fileID: 1296408216}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!1001 &518377050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -454,7 +457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1296408216}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundCheckTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
