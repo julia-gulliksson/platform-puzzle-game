@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     bool jumpKeyWasPressed = false;
     float horizontalInput;
     Rigidbody playerRigidBody;
-    float jumpHeight = 6f;
     private int superJumpsRemaining;
 
     void Start()
@@ -37,7 +36,13 @@ public class Player : MonoBehaviour
      
         if (jumpKeyWasPressed)
         {
-            playerRigidBody.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
+            float jumpPower = 5f;
+            if(superJumpsRemaining > 0)
+            {
+                jumpPower *= 2;
+                superJumpsRemaining--;
+            }
+            playerRigidBody.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
             jumpKeyWasPressed = false;
         }
     }
