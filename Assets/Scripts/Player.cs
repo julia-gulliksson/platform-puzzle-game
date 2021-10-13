@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     float horizontalInput;
     Rigidbody playerRigidBody;
     float jumpHeight = 6f;
+    private int superJumpsRemaining;
 
     void Start()
     {
@@ -38,6 +39,15 @@ public class Player : MonoBehaviour
         {
             playerRigidBody.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
             jumpKeyWasPressed = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 7)
+        {
+            Destroy(other.gameObject);
+            superJumpsRemaining++;
         }
     }
 }
