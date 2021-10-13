@@ -8,18 +8,17 @@ public class PlayerMovement : MonoBehaviour
     public float sidewaysForce = 50f;
     public Rigidbody player;
     public float jumpAmount = 5;
-    public float gravityScale = 10;
-    public float fallingGravityScale = 40;
+    bool jumpKeyWasPressed = false;
+  
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            player.AddForce(Vector3.up * jumpAmount, ForceMode.Impulse);
+            jumpKeyWasPressed = true;
         }
     }
     void FixedUpdate()
     {
-        player.AddForce(forwardForce * Time.deltaTime, 0, 0);
         if (Input.GetKey("d"))
         {
             //ForceMode.VelocityChange ignores the object's mass
@@ -30,7 +29,16 @@ public class PlayerMovement : MonoBehaviour
         {
             player.AddForce(0, 0, sidewaysForce * Time.deltaTime, ForceMode.VelocityChange);
         }
+        if (!jumpKeyWasPressed)
+        {
+            player.AddForce(forwardForce * Time.deltaTime, 0, 0);
+        }
 
-      
+        if (jumpKeyWasPressed)
+        {
+            player.AddForce(Vector3.up * jumpAmount, ForceMode.VelocityChange);
+            jumpKeyWasPressed = false;
+        } 
+
     }
 }
