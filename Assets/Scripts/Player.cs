@@ -20,26 +20,28 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+
             jumpKeyWasPressed = true;
         }
         horizontalInput = Input.GetAxis("Horizontal");
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         playerRigidBody.velocity = new Vector3(horizontalInput, playerRigidBody.velocity.y, 0);
 
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
         {
+
             return;
         }
      
         if (jumpKeyWasPressed)
         {
             float jumpPower = 5f;
-            if(superJumpsRemaining > 0)
+            if (superJumpsRemaining > 0)
             {
-                jumpPower *= 2;
+                jumpPower *= 1.5f;
                 superJumpsRemaining--;
             }
             playerRigidBody.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
