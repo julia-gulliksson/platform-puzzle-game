@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     bool jumpKeyWasPressed = false;
     float horizontalInput;
     Rigidbody playerRigidBody;
-    private int superJumpsRemaining;
+    public int superJumpsRemaining;
 
     void Start()
     {
