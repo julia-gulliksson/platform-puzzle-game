@@ -3,6 +3,8 @@ using UnityEngine;
 public class FloorMovement : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    bool atTop = false;
     void Start()
     {
         
@@ -13,17 +15,18 @@ public class FloorMovement : MonoBehaviour
     {
         float y = transform.position.y;
         float speed = 0.5f;
-        if (y < 3)
+        float topPosition = 3;
+        float bottomPosition = 1.19f;
+        if ((y <= topPosition && y > bottomPosition) || (y <= bottomPosition))
         {
+            atTop = false;
             y = y + speed * Time.deltaTime;
             transform.position = new Vector3(transform.position.x, y, 0);
-            return;
-        }
-        else if (y >= 3)
+        } else if (y >= topPosition)
         {
+            atTop = true;
             y = y - speed * Time.deltaTime;
             transform.position = new Vector3(transform.position.x, y, 0);
-
         }
 
     }
