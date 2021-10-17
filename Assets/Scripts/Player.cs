@@ -59,10 +59,6 @@ public class Player : MonoBehaviour
         if(other.gameObject.layer == 7)
         {
             HandleCoinCollision(other);
-        } 
-        if(other.gameObject.layer == 8)
-        {
-            HandleBoosterCollision(other);
         }
     }
 
@@ -72,11 +68,14 @@ public class Player : MonoBehaviour
         superJumpsRemaining++;
     }
     
-    void HandleBoosterCollision(Collider booster)
+    void OnCollisionEnter(Collision other)
     {
-        Destroy(booster.gameObject);
-        float jumpPower = 5f * 1.5f;
-        // Boost player upwards
-        playerRigidBody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        if (other.gameObject.layer == 8)
+        {
+            float force = 5f * 1.5f;
+            // Boost player upwards
+            playerRigidBody.AddForce(Vector3.up * force, ForceMode.Impulse);
+        }
+       
     }
 }
