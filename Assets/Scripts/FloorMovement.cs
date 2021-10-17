@@ -5,6 +5,7 @@ public class FloorMovement : MonoBehaviour
     // Start is called before the first frame update
 
     bool atTop = false;
+    bool atBottom = true;
     void Start()
     {
         
@@ -17,27 +18,28 @@ public class FloorMovement : MonoBehaviour
         float speed = 0.5f;
         float topPosition = 3;
         float bottomPosition = 1.19f;
-        if ((y <= topPosition && y > bottomPosition) || (y <= bottomPosition))
+        if(y <= bottomPosition)
         {
+            atBottom = true;
             atTop = false;
-            y = y + speed * Time.deltaTime;
-            transform.position = new Vector3(transform.position.x, y, 0);
-        } else if (y >= topPosition)
+        }
+        if(y >= topPosition)
         {
             atTop = true;
+            atBottom = false;
+        }
+        if (atBottom)
+        {
+            y = y + speed * Time.deltaTime;
+            transform.position = new Vector3(transform.position.x, y, 0);
+        }
+        if (atTop)
+        {
             y = y - speed * Time.deltaTime;
             transform.position = new Vector3(transform.position.x, y, 0);
         }
 
     }
 
-    //    private void OnCollisionEnter(Collision collision)
-    //    {
-    //        if(collision.gameObject.layer == 6)
-    //        {
-    //            Debug.Log(transform.position + "Before");
-    //            transform.position = new Vector3(transform.position.x, transform.position.y + 2, 0);
-    //            Debug.Log(transform.position + "After");
-    //        }
-    //    }
+ 
 }
