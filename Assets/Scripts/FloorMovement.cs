@@ -2,28 +2,29 @@ using UnityEngine;
 
 public class FloorMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     bool atTop = false;
     bool atBottom = true;
+    float topPosition;
+    float bottomPosition;
+    // Field to set how high the object should travel
+    [SerializeField] float travelAmount;
     void Start()
     {
-        
+        // Initial position
+        bottomPosition = transform.position.y;
+        topPosition = bottomPosition + travelAmount;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         float y = transform.position.y;
         float speed = 0.5f;
-        float topPosition = 3;
-        float bottomPosition = 1.19f;
-        if(y <= bottomPosition)
+    
+        if (y <= bottomPosition)
         {
             atBottom = true;
             atTop = false;
-        }
-        if(y >= topPosition)
+        } else if (y >= topPosition)
         {
             atTop = true;
             atBottom = false;
@@ -32,14 +33,10 @@ public class FloorMovement : MonoBehaviour
         {
             y = y + speed * Time.deltaTime;
             transform.position = new Vector3(transform.position.x, y, 0);
-        }
-        if (atTop)
+        } else if (atTop)
         {
             y = y - speed * Time.deltaTime;
             transform.position = new Vector3(transform.position.x, y, 0);
         }
-
     }
-
- 
 }
