@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     float horizontalInput;
     Rigidbody playerRigidBody;
     public int superJumpsRemaining;
-
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody>();
@@ -28,8 +27,11 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        playerRigidBody.velocity = new Vector3(horizontalInput, playerRigidBody.velocity.y, 0);
-
+        playerRigidBody.velocity = new Vector3(horizontalInput * 2, playerRigidBody.velocity.y, 0);
+        if (transform.position.y < -4)
+        {
+            Debug.Log("Game over");
+        }
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
         {
 
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
         if (jumpKeyWasPressed)
         {
             float jumpPower = 5f;
+
             if (superJumpsRemaining > 0)
             {
                 jumpPower *= 1.5f;
@@ -47,13 +50,19 @@ public class Player : MonoBehaviour
             playerRigidBody.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
             jumpKeyWasPressed = false;
         }
+
+      
     }
 
     void OnTriggerEnter(Collider other)
-    {
+    { 
         if(other.gameObject.layer == 7)
         {
             HandleCoinCollision(other);
+        } 
+        if(other.gameObject.layer == 8)
+        {
+            HandleBoosterCollision(other);
         }
     }
 
@@ -61,5 +70,13 @@ public class Player : MonoBehaviour
     {
         Destroy(coin.gameObject);
         superJumpsRemaining++;
+    }
+    
+    void HandleBoosterCollision(Collider booster)
+    {
+        Destroy(booster.gameObject);
+        float jumpPower = 5f * 1.5f;
+        // Boost player upwards
+        playerRigidBody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
     }
 }
