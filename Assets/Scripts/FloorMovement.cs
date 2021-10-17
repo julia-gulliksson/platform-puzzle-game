@@ -29,6 +29,7 @@ public class FloorMovement : MonoBehaviour
             atTop = true;
             atBottom = false;
         }
+
         if (atBottom)
         {
             y = y + speed * Time.deltaTime;
