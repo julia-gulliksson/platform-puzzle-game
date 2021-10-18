@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-
             jumpKeyWasPressed = true;
         }
         horizontalInput = Input.GetAxis("Horizontal");
@@ -28,12 +27,23 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Make player move right-left
         rb.velocity = new Vector3(horizontalInput * 2, rb.velocity.y, 0);
-        if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
+        if (CheckIfNotGrounded())
         {
+            // Player is in the air, return to prevent jump
             return;
         }
-     
+        HandleJump();
+    }
+
+    bool CheckIfNotGrounded()
+    {
+        return Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0;
+    }
+
+    void HandleJump()
+    {
         if (jumpKeyWasPressed)
         {
             float jumpPower = 5f;
