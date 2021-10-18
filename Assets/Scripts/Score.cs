@@ -4,12 +4,12 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     [SerializeField] Text yellowCoinsText;
-    public Player playerScript;
+    public PlayerCollision playerCollision;
 
 
     // Update is called once per frame
     void Update()
     {
-        yellowCoinsText.text = playerScript.superJumpsRemaining.ToString();
+        yellowCoinsText.text = playerCollision.superJumpsRemaining.ToString();
     }
 }
