@@ -27,14 +27,17 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        CheckIfFalling();
+
+        MovePlayer();
+
+        HandleJump();
+    }
+
+    void MovePlayer()
+    {
         //Make player move right-left
         rb.velocity = new Vector3(horizontalInput * 2, rb.velocity.y, 0);
-        if (CheckIfNotGrounded())
-        {
-            // Player is in the air, return to prevent jump
-            return;
-        }
-        HandleJump();
     }
 
     bool CheckIfNotGrounded()
@@ -42,8 +45,22 @@ public class PlayerMovement : MonoBehaviour
         return Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0;
     }
 
+    void CheckIfFalling()
+    {
+        if (rb.position.y < -1f)
+        {
+            //Player has fallen off the edge, restart the level
+            FindObjectOfType<GameManager>().EndGame();
+        }
+    }
+
     void HandleJump()
     {
+        if (CheckIfNotGrounded())
+        {
+            // Player is in the air, return to prevent jump
+            return;
+        }
         if (jumpKeyWasPressed)
         {
             float jumpPower = 5f;
