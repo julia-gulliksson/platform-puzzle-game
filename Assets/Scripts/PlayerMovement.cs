@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        //Make player move right-left
+        //Make player move on the x axis
         rb.velocity = new Vector3(horizontalInput * 2, rb.velocity.y, 0);
     }
 
