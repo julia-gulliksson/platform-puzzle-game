@@ -26,13 +26,5 @@ public class PlayerCollision : MonoBehaviour
         superJumpsRemaining++;
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.layer == 8)
-        {
-            float force = 9f;
-            // Boost player upwards
-            rb.AddForce(Vector3.up * force, ForceMode.Impulse);
-        }
-    }
+    
 }

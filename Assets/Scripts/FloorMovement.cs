@@ -17,6 +17,10 @@ public class FloorMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(travelAmount <= 0)
+        {
+            return;
+        }
         float y = transform.position.y;
         float speed = 0.5f;
     
