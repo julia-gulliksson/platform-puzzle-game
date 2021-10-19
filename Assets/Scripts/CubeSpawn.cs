@@ -11,7 +11,7 @@ public class CubeSpawn : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        initialPosition = new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z);
 
     }
 
