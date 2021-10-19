@@ -1,33 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeSpawn : MonoBehaviour
 {
-    Rigidbody rb;
     bool destroyed = false;
     Vector3 initialPosition;
     public Transform prefab;
+    [SerializeField] float heightOffset = 0.7f;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        initialPosition = new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z);
-
+        // Set the initial position of the cube
+        initialPosition = new Vector3(transform.position.x, transform.position.y + heightOffset, transform.position.z);
     }
 
     void FixedUpdate()
     {
         if(transform.position.y < -1f && !destroyed)
         {
-            DestroyCube();
+            //Cube has fallen down, destroy it and respawn in same location 
+            RespawnCube();
             destroyed = true;
         }
     }
 
-    void DestroyCube()
+    void RespawnCube()
     {
         Instantiate(prefab, initialPosition, Quaternion.identity);
-
         Destroy(gameObject);
         Debug.Log("Destroyed");
     }
