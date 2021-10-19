@@ -8,8 +8,10 @@ public class PlayerCollision : MonoBehaviour
     public int superJumpsRemaining = 0;
     bool shiftKeyIsPressed = false;
     [SerializeField] Transform guide;
-    bool isHolding = false;
-
+    //bool isHolding = false;
+    //SAVE GAME OBJECT holding
+    GameObject heldObject;
+    [SerializeField] float pickUpRange = 5;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,55 +19,80 @@ public class PlayerCollision : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        //if (Input.GetButton("Fire3"))
+        //{
+        //    shiftKeyIsPressed = true;
+        if (heldObject == null)
         {
-            shiftKeyIsPressed = true;
-        } else
-        {
-            shiftKeyIsPressed = false;
+            RaycastHit hit;
+            Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.right));
+            Debug.DrawRay(ray.origin, ray.direction * 10);
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, pickUpRange))
+            {
+                //Debug.Log(hit.transform.gameObject.name);
+                //PickUpObject(hit.transform.gameObject);
+            }
         }
+        //} else
+        //{
+        //    shiftKeyIsPressed = false;
+        //}
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 7)
-        {
-            HandleCoinCollision(other);
-        }
-        if (other.gameObject.layer == 9)
-        {
-            HandleCubeCollision(other);
-        }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.layer == 7)
+    //    {
+    //        HandleCoinCollision(other);
+    //    }
+    //    if (other.gameObject.layer == 9)
+    //    {
+    //        if (shiftKeyIsPressed && !isHolding)
+    //        {
+    //            Debug.Log("Start holding");
+    //            other.attachedRigidbody.isKinematic = true;
+    //            other.transform.parent = transform;
+    //            isHolding = true;
+    //        }
+    //    }
+    //}
 
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == 9)
-        {
-            HandleCubeCollision(other);
-        }
-    }
+    //    if (other.gameObject.layer == 9)
+    //    {
+    //        Debug.Log("Staying");
+    //        HandleCubeCollision(other);
+    //        // ADD HELDOBJECT 
+    //    }
+    //}
 
-    void HandleCubeCollision(Collider cube)
-    {
-        //Add check to see if jumping, disable if jumping
+    //void HandleCubeCollision(Collider cube)
+    //{
+    //    //Add check to see if jumping, disable if jumping
 
-        //Check if on left or right side of object
-        //Only move if dragging object with you
-        if (shiftKeyIsPressed && !isHolding)
-        {
-            cube.attachedRigidbody.isKinematic = true;
-            cube.transform.parent = transform;
-            isHolding = true;
-        }
-        else
-        {
-            cube.attachedRigidbody.isKinematic = false;
-            cube.transform.parent = null;
-            isHolding = false;
-        }
-    }
+    //    //Check if on left or right side of object
+    //    //Only move if dragging object with you
+    //    Debug.Log(isHolding);
+    //    if (shiftKeyIsPressed && !isHolding)
+    //    {
+    //            Debug.Log("Start holding");
+    //            cube.attachedRigidbody.isKinematic = true;
+    //            cube.transform.parent = transform;
+    //            cube.transform.eulerAngles = new Vector3(0, 0, 0);
+    //            cube.transform.localPosition = new Vector3(transform.position.x - 0.1f, cube.transform.position.y, 0);
+    //            isHolding = true; 
+    //    }
+    //    else if(!shiftKeyIsPressed && isHolding)  
+    //    {
+    //        Debug.Log("Stop holding");
+
+    //        cube.attachedRigidbody.isKinematic = false;
+    //        cube.transform.parent = null;
+    //        isHolding = false;
+    //    }
+    //}
 
     void HandleCoinCollision(Collider coin)
     {
