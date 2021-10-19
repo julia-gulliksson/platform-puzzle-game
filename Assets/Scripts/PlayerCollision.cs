@@ -56,13 +56,13 @@ public class PlayerCollision : MonoBehaviour
         if (shiftKeyIsPressed && !isHolding)
         {
             cube.attachedRigidbody.isKinematic = true;
-            cube.transform.parent = guide;
+            cube.transform.parent = transform;
             isHolding = true;
         }
         else
         {
             cube.attachedRigidbody.isKinematic = false;
-            cube.transform.parent = guide;
+            cube.transform.parent = null;
             isHolding = false;
         }
     }
@@ -71,31 +71,6 @@ public class PlayerCollision : MonoBehaviour
     {
         Destroy(coin.gameObject);
         superJumpsRemaining++;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == 9 && !isHolding)
-        {
-            // Object is a cube
-            //if (shiftKeyWasPressed)
-            //{
-                //collision.rigidbody.useGravity = false;
-                //collision.rigidbody.isKinematic = true;
-                //collision.transform.position = guide.transform.position;
-                //collision.transform.rotation = guide.transform.rotation;
-                //collision.transform.parent = guide;
-                //isHolding = true;
-            //}
-            //else if (isHolding && !shiftKeyWasPressed)
-            //{
-            //    collision.rigidbody.useGravity = true;
-            //    collision.rigidbody.isKinematic = false;
-            //    collision.transform.position = guide.transform.position;
-            //    collision.transform.parent = null;
-            //    isHolding = false;
-            //}
-        }
     }
 
 }
