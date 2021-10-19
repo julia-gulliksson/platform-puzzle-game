@@ -11,7 +11,7 @@ public class PlayerCollision : MonoBehaviour
     //bool isHolding = false;
     //SAVE GAME OBJECT holding
     GameObject heldObject;
-    [SerializeField] float pickUpRange = 5;
+    [SerializeField] float pickUpRange = 50;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,11 +25,9 @@ public class PlayerCollision : MonoBehaviour
         if (heldObject == null)
         {
             RaycastHit hit;
-            Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.right));
-            Debug.DrawRay(ray.origin, ray.direction * 10);
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, pickUpRange))
             {
-                //Debug.Log(hit.transform.gameObject.name);
+                Debug.Log(hit.transform.gameObject.name);
                 //PickUpObject(hit.transform.gameObject);
             }
         }
