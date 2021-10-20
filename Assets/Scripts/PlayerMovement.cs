@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     Rigidbody rb;
     [SerializeField] PlayerCollision playerCollision;
-
+    public bool isGrounded;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
         MovePlayer();
 
+        CheckIfNotGrounded();
+
         HandleJump();
     }
 
@@ -41,9 +43,9 @@ public class PlayerMovement : MonoBehaviour
         transform.LookAt(transform.position + new Vector3(horizontalInput, 0.0f, 0));
     }
 
-    bool CheckIfNotGrounded()
+    void CheckIfNotGrounded()
     {
-        return Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0;
+        isGrounded = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length != 0;
     }
 
     void CheckIfFalling()
@@ -57,7 +59,8 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleJump()
     {
-        if (CheckIfNotGrounded())
+
+        if (!isGrounded)
         {
             // Player is in the air, return to prevent jump
             return;

@@ -9,6 +9,7 @@ public class PickUpObjects : MonoBehaviour
     Transform playerTransform;
     Collider handsCollider;
     Collider playerCollider;
+    [SerializeField] PlayerMovement playerMovement;
     void Start()
     {
         playerTransform = transform.parent;
@@ -16,12 +17,9 @@ public class PickUpObjects : MonoBehaviour
         playerCollider = playerTransform.GetComponent<Collider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Debug.Log(Input.GetButton("Fire3") + "FIRE");
-
-        if (Input.GetButton("Fire3") && heldObject == null)
+        if (Input.GetButton("Fire3") && heldObject == null && playerMovement.isGrounded)
         {
             Vector3 forward = transform.TransformDirection(0, -1, 0);
             RaycastHit hit;
@@ -34,7 +32,8 @@ public class PickUpObjects : MonoBehaviour
                 }
             }
         }
-        else if (!Input.GetButton("Fire3") && heldObject != null)
+
+        if ((!Input.GetButton("Fire3") && heldObject != null) || (!playerMovement.isGrounded && heldObject != null))
         {
             HandleDrop();
         }
@@ -42,7 +41,8 @@ public class PickUpObjects : MonoBehaviour
 
     void HandlePickUp(GameObject objectToPickUp)
     {
-        // Ignore collision with hands + player and object, to prevent kinematic collider to cause player to fly
+        /* Ignore collision with hands + player and object
+          (to prevent kinematic collider to cause player to fly when moving) */
         Physics.IgnoreCollision(objectToPickUp.GetComponent<Collider>(), handsCollider);
         Physics.IgnoreCollision(objectToPickUp.GetComponent<Collider>(), playerCollider);
 
@@ -51,6 +51,7 @@ public class PickUpObjects : MonoBehaviour
         objectToPickUp.transform.parent = playerTransform;
         objectRb.isKinematic = true;
         objectToPickUp.transform.position = new Vector3(objectToPickUp.transform.position.x, playerTransform.position.y - 0.2f, 0);
+
         heldObject = objectToPickUp;
     }
 
