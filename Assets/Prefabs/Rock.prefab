@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5046655300205154503}
   - component: {fileID: 5046655300205154502}
   m_Layer: 9
-  m_Name: Cube
+  m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3e43ad83665fb4e4cba947a64c23b7f3, type: 2}
+  - {fileID: 2100000, guid: 9cc20b08f93242842a0741265f69d1cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,3 +127,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 5046655300205154507}
+  heightOffset: 0.7
