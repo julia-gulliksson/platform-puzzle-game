@@ -39,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
         //Make player move on the x axis
         rb.velocity = new Vector3(horizontalInput * 2, rb.velocity.y, 0);
         transform.LookAt(transform.position + new Vector3(horizontalInput, 0.0f, 0));
-
     }
 
     bool CheckIfNotGrounded()
