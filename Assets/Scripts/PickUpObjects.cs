@@ -39,6 +39,19 @@ public class PickUpObjects : MonoBehaviour
         }
     }
 
+    float GetXPosition(Transform object1, Transform object2)
+    {
+        if (object1.position.x > object2.position.x)
+        {
+            // Object is on the right of the player, so offset with a positive number
+            return playerTransform.position.x + 0.5f;
+        }
+        else
+        {
+            return playerTransform.position.x - 0.5f;
+        }
+    }
+
     void HandlePickUp(GameObject objectToPickUp)
     {
         /* Ignore collision with hands + player and object
@@ -46,11 +59,15 @@ public class PickUpObjects : MonoBehaviour
         Physics.IgnoreCollision(objectToPickUp.GetComponent<Collider>(), handsCollider);
         Physics.IgnoreCollision(objectToPickUp.GetComponent<Collider>(), playerCollider);
 
+        // Make object possible to pick up
         Rigidbody objectRb;
         objectRb = objectToPickUp.GetComponent<Rigidbody>();
         objectToPickUp.transform.parent = playerTransform;
         objectRb.isKinematic = true;
-        objectToPickUp.transform.position = new Vector3(objectToPickUp.transform.position.x, playerTransform.position.y - 0.2f, 0);
+
+        // Position object correctly
+        float xPosition = GetXPosition(objectToPickUp.transform, playerTransform);
+        objectToPickUp.transform.position = new Vector3(xPosition, playerTransform.position.y - 0.2f, 0);
 
         heldObject = objectToPickUp;
     }
