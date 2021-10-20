@@ -22,38 +22,38 @@ public class PlayerCollision : MonoBehaviour
         //if (Input.GetButton("Fire3"))
         //{
         //    shiftKeyIsPressed = true;
-        if (heldObject == null)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, pickUpRange))
-            {
-                Debug.Log(hit.transform.gameObject.name);
-                //PickUpObject(hit.transform.gameObject);
-            }
-        }
+        //if (heldObject == null)
+        //{
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, pickUpRange))
+        //    {
+        //        Debug.Log(hit.transform.gameObject.name);
+        //        //PickUpObject(hit.transform.gameObject);
+        //    }
+        //}
         //} else
         //{
         //    shiftKeyIsPressed = false;
         //}
     }
 
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.layer == 7)
-    //    {
-    //        HandleCoinCollision(other);
-    //    }
-    //    if (other.gameObject.layer == 9)
-    //    {
-    //        if (shiftKeyIsPressed && !isHolding)
-    //        {
-    //            Debug.Log("Start holding");
-    //            other.attachedRigidbody.isKinematic = true;
-    //            other.transform.parent = transform;
-    //            isHolding = true;
-    //        }
-    //    }
-    //}
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            HandleCoinCollision(other);
+        }
+        //if (other.gameObject.layer == 9)
+        //{
+        //    if (shiftKeyIsPressed && !isHolding)
+        //    {
+        //        Debug.Log("Start holding");
+        //        other.attachedRigidbody.isKinematic = true;
+        //        other.transform.parent = transform;
+        //        isHolding = true;
+        //    }
+        //}
+    }
 
     //private void OnTriggerStay(Collider other)
     //{
