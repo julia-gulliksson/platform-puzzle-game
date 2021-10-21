@@ -16,7 +16,7 @@ public class FloorMovement : MonoBehaviour
         topPosition = bottomPosition + travelAmount;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (travelAmount <= 0)
         {

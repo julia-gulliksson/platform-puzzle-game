@@ -67,8 +67,8 @@ public class PickUpObjects : MonoBehaviour
 
         // Position object correctly
         float xPosition = GetXPosition(objectToPickUp.transform, playerTransform);
-        objectToPickUp.transform.position = new Vector3(xPosition, playerTransform.position.y - 0.2f, 0);
-
+        objectToPickUp.transform.position = new Vector3(xPosition, playerTransform.position.y - 0.35f, 0);
+        objectToPickUp.transform.eulerAngles = new Vector3(0, 0, 0);
         heldObject = objectToPickUp;
     }
 
