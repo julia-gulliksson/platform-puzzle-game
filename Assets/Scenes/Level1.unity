@@ -608,6 +608,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7339064386034180501, guid: 70be99735ca4d6d45a65f4b72fbefa54, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7339064386034180502, guid: 70be99735ca4d6d45a65f4b72fbefa54, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1926,6 +1930,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 922266212}
     m_Modifications:
+    - target: {fileID: 5046655300205154503, guid: 3d06b15414658c245824d4a05eb66ee3, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5046655300205154504, guid: 3d06b15414658c245824d4a05eb66ee3, type: 3}
       propertyPath: m_Name
       value: Rock

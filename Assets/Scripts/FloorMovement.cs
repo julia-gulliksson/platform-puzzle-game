@@ -52,12 +52,14 @@ public class FloorMovement : MonoBehaviour
     {
         if (other.gameObject.layer == 6 || other.gameObject.layer == 9)
         {
-
             other.transform.parent = transform.parent;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        other.transform.parent = levelTransform;
+        if (other.gameObject.layer == 6 || other.gameObject.layer == 9)
+        {
+            other.transform.parent = levelTransform;
+        }
     }
 }
