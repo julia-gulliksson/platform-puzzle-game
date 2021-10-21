@@ -8,6 +8,7 @@ public class FloorMovement : MonoBehaviour
     float bottomPosition;
     // Field to set how high the object should travel
     [SerializeField] float travelAmount;
+    [SerializeField] Transform levelTransform;
     void Start()
     {
         // Initial position
@@ -15,20 +16,21 @@ public class FloorMovement : MonoBehaviour
         topPosition = bottomPosition + travelAmount;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if(travelAmount <= 0)
+        if (travelAmount <= 0)
         {
             return;
         }
         float y = transform.position.y;
         float speed = 0.5f;
-    
+
         if (y <= bottomPosition)
         {
             atBottom = true;
             atTop = false;
-        } else if (y >= topPosition)
+        }
+        else if (y >= topPosition)
         {
             atTop = true;
             atBottom = false;
@@ -38,10 +40,24 @@ public class FloorMovement : MonoBehaviour
         {
             y = y + speed * Time.deltaTime;
             transform.position = new Vector3(transform.position.x, y, 0);
-        } else if (atTop)
+        }
+        else if (atTop)
         {
             y = y - speed * Time.deltaTime;
             transform.position = new Vector3(transform.position.x, y, 0);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 6 || other.gameObject.layer == 9)
+        {
+
+            other.transform.parent = transform.parent;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        other.transform.parent = levelTransform;
     }
 }

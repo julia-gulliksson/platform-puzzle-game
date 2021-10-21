@@ -8,6 +8,7 @@ public class BoosterTrigger : MonoBehaviour
     {
         float force = 9f;
         // Boost objects upwards
-        other.rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
+        //other.rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
+        other.rigidbody.AddForce(new Vector3(0.1f, 0.7f, 0) * force, ForceMode.Impulse);
     }
 }
