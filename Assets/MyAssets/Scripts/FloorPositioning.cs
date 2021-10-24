@@ -8,8 +8,12 @@ public class FloorPositioning : MonoBehaviour
     {
         if (other.gameObject.layer != 10)
         {
-            // Make sure that game object is not player's hands
             other.transform.parent = transform;
+        }
+        else
+        {
+            // Game object is the player's hands, set its parent's transform (the player) to this transform
+            other.transform.parent.parent = transform;
         }
     }
 

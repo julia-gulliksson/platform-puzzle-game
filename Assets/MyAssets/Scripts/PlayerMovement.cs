@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Transform groundCheckTransform = null;
-    [SerializeField] private LayerMask playerMask;
+    [SerializeField] Transform groundCheckTransform = null;
+    [SerializeField] Transform handgroundCheckTransform = null;
+    [SerializeField] LayerMask playerMask;
+    [SerializeField] LayerMask handColliderMask;
     bool jumpKeyWasPressed = false;
     float horizontalInput;
     Rigidbody rb;
@@ -45,14 +47,22 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckIfNotGrounded()
     {
-        isGrounded = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length != 0;
+        if (Physics.OverlapSphere(handgroundCheckTransform.position, 0.1f, handColliderMask).Length != 0)
+        {
+            // Player is stuck with hands on platform, enable jumping
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length != 0;
+        }
     }
 
     void CheckIfFalling()
     {
-        if (rb.position.y < -1f)
+        if (rb.position.y <= -1f)
         {
-            //Player has fallen off the edge, restart the level
+            // Player has fallen off the edge, restart the level
             FindObjectOfType<GameManager>().EndGame();
         }
     }
