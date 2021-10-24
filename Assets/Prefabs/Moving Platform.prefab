@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 353559913325668014}
   - component: {fileID: 353559913325668013}
-  - component: {fileID: 353559913325668012}
   m_Layer: 0
   m_Name: Moving Platform
   m_TagString: Untagged
@@ -52,18 +51,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &353559913325668012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353559913325668015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20419a77c7f655741860e416d2355703, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5028055051447135479
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +64,7 @@ GameObject:
   - component: {fileID: 5028055051447135484}
   - component: {fileID: 5028055051447135483}
   - component: {fileID: 5028055051447135482}
+  - component: {fileID: 7608849842042745498}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -174,3 +162,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.4301691, z: 1}
   m_Center: {x: 0, y: 0.56000614, z: 0}
+--- !u!114 &7608849842042745498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028055051447135479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20419a77c7f655741860e416d2355703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

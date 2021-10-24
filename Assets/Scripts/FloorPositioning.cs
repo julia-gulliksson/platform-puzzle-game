@@ -6,7 +6,7 @@ public class FloorPositioning : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.transform.parent = transform.GetChild(0);
+        other.transform.parent = transform;
     }
 
     private void OnTriggerExit(Collider other)
