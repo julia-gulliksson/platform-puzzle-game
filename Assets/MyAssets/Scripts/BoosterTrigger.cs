@@ -15,7 +15,7 @@ public class BoosterTrigger : MonoBehaviour
         }
         else
         {
-            force = new Vector3(0.3f, 0.7f, 0);
+            force = new Vector3(0.3f, 0.7f, 0) * forceNumber;
         }
         other.rigidbody.AddForce(force, ForceMode.Impulse);
     }
