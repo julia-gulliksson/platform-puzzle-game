@@ -17,11 +17,24 @@ public class FloorPositioning : MonoBehaviour
         }
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == 10 && other.transform.parent.parent == null)
+        {
+            // Fixes issue with hands stop triggering collider
+            other.transform.parent.parent = transform;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer != 10)
         {
             other.transform.parent = null;
+        }
+        else
+        {
+            other.transform.parent.parent = null;
         }
     }
 }

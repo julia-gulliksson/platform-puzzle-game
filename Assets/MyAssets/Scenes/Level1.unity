@@ -1251,10 +1251,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moving Platform
       objectReference: {fileID: 0}
-    - target: {fileID: 5028055051447135479, guid: 2075b4da4bddc6a45ac9941362406619, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 5028055051447135480, guid: 2075b4da4bddc6a45ac9941362406619, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.61
@@ -1482,7 +1478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1469366210048449549, guid: 5b1d90dedcccbc14eb02d5c5486680d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.34
+      value: 2.014
       objectReference: {fileID: 0}
     - target: {fileID: 1469366210048449549, guid: 5b1d90dedcccbc14eb02d5c5486680d3, type: 3}
       propertyPath: m_LocalPosition.y
