@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleJump()
     {
-
         if (!isGrounded)
         {
             // Player is in the air, return to prevent jump
