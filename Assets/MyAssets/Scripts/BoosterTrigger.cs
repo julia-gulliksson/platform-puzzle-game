@@ -23,4 +23,9 @@ public class BoosterTrigger : MonoBehaviour
             colliderRb.AddForce(force, ForceMode.Impulse);
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("Here=");
+    }
 }
