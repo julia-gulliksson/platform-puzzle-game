@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5547178325870158568}
   - component: {fileID: 6432766219737788893}
   - component: {fileID: 8843702060582367862}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 6158121063632099560}
   - component: {fileID: 2798887346272181855}
   - component: {fileID: 4405482385543726775}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,3 +422,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   superJumpsRemaining: 0
+  coins: 0
