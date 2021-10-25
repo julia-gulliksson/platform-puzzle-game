@@ -1554,7 +1554,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8385452606462400575, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
   m_PrefabInstance: {fileID: 8385452607611891329}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1149564607
+--- !u!114 &1149564607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149564605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3377fcd13ae534743a2ec799e4cb5d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationController: {fileID: 1149564611}
+--- !u!65 &1149564608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149564605}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.6327037, z: 1}
+  m_Center: {x: 0, y: 0.3093841, z: 0}
+--- !u!95 &1149564611
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -1562,7 +1588,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149564605}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ad30d502fb9a0ad428427c77868c5007, type: 2}
   m_CullingMode: 0
@@ -2600,6 +2626,22 @@ PrefabInstance:
     - target: {fileID: 8385452606462400572, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
       propertyPath: m_Name
       value: Platform Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385452606462400574, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9726193
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385452606462400574, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
+      propertyPath: m_Size.z
+      value: 0.99741143
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385452606462400574, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
+      propertyPath: m_Center.y
+      value: -0.013690703
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385452606462400574, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0012942877
       objectReference: {fileID: 0}
     - target: {fileID: 8385452606462400575, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
       propertyPath: m_RootOrder
