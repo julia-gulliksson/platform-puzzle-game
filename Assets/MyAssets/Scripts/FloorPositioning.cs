@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloorPositioning : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer != 10)
         {
@@ -24,9 +24,14 @@ public class FloorPositioning : MonoBehaviour
             // Fixes issue with hands stop triggering collider
             other.transform.parent.parent = transform;
         }
+        if (other.gameObject.layer == 6 && other.transform.parent == null)
+        {
+            // Fixes issue with player not staying as a child
+            other.transform.parent = transform;
+        }
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer != 10)
         {

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3116229290240845145}
   - component: {fileID: 203549644078394852}
   - component: {fileID: 8044807116041980079}
+  - component: {fileID: 925306809372806137}
   m_Layer: 8
   m_Name: Booster
   m_TagString: Untagged
@@ -109,3 +110,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46339954ea080f0468d050166fea3a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &925306809372806137
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403680286938699430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.42384452, z: 0.9877888}
+  m_Center: {x: 0, y: 0.66189456, z: 0.0061058877}
