@@ -41,20 +41,21 @@ public class PickUpObjects : MonoBehaviour
 
     float GetXPosition(Transform object1, Transform object2)
     {
+        float offset = 0.75f;
         if (object1.position.x > object2.position.x)
         {
             // Object is on the right of the player, so offset with a positive number
-            return playerTransform.position.x + 0.5f;
+            return playerTransform.position.x + offset;
         }
         else
         {
-            return playerTransform.position.x - 0.5f;
+            return playerTransform.position.x - offset;
         }
     }
 
     void HandlePickUp(GameObject objectToPickUp)
     {
-        /* Ignore collision with hands + player and object
+        /* Ignore collision with hands + player
           (to prevent kinematic collider to cause player to fly when moving) */
         Physics.IgnoreCollision(objectToPickUp.GetComponent<Collider>(), handsCollider);
         Physics.IgnoreCollision(objectToPickUp.GetComponent<Collider>(), playerCollider);
@@ -66,8 +67,8 @@ public class PickUpObjects : MonoBehaviour
         objectRb.isKinematic = true;
 
         // Position object correctly
-        float xPosition = GetXPosition(objectToPickUp.transform, playerTransform);
-        objectToPickUp.transform.position = new Vector3(xPosition, playerTransform.position.y - 0.35f, 0);
+        float xPosition = GetXPosition(objectToPickUp.transform, transform);
+        objectToPickUp.transform.position = new Vector3(xPosition, playerTransform.position.y - 0.1f, 0);
         objectToPickUp.transform.eulerAngles = new Vector3(0, 0, 0);
         heldObject = objectToPickUp;
     }
