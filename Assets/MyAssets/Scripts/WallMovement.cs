@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WallMovement : MonoBehaviour
 {
-    //[SerializeField] Animator animationController;
     Animator animationController;
     void OnEnable()
     {
