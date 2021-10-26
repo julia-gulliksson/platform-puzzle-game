@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class WallMovement : MonoBehaviour
 {
-    [SerializeField] Animator animationController;
+    //[SerializeField] Animator animationController;
+    Animator animationController;
     void OnEnable()
     {
+        animationController = gameObject.GetComponent<Animator>();
         PlatformTrigger.platformTriggered += MovePlatform;
     }
 
