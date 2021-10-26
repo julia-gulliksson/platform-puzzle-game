@@ -8,15 +8,16 @@ public class CubeSpawn : MonoBehaviour
     [SerializeField] float heightOffset = 0.7f;
     void Start()
     {
-        // Set the initial position of the cube
+        // Save the initial position of the cube
         initialPosition = new Vector3(transform.position.x, transform.position.y + heightOffset, transform.position.z);
     }
 
     void FixedUpdate()
     {
-        if(transform.position.y < -1f && !destroyed)
+        float destroyPoint = 5f;
+        if (transform.position.y < initialPosition.y - destroyPoint && !destroyed)
         {
-            //Cube has fallen down, destroy it and respawn in same location 
+            // Cube has fallen down, destroy it and respawn in same location 
             RespawnCube();
             destroyed = true;
         }
@@ -26,6 +27,5 @@ public class CubeSpawn : MonoBehaviour
     {
         Instantiate(prefab, initialPosition, Quaternion.identity);
         Destroy(gameObject);
-        Debug.Log("Destroyed");
     }
 }
