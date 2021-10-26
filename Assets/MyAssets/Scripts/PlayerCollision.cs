@@ -30,4 +30,9 @@ public class PlayerCollision : MonoBehaviour
         Destroy(coin.gameObject);
         coins++;
     }
+
+    public void RemoveSuperJump()
+    {
+        superJumpsRemaining--;
+    }
 }

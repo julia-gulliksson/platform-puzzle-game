@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             if (playerCollision.superJumpsRemaining > 0)
             {
                 jumpPower *= 1.5f;
-                playerCollision.superJumpsRemaining--;
+                playerCollision.RemoveSuperJump();
             }
             rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
             jumpKeyWasPressed = false;

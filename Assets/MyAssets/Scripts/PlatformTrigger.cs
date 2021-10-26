@@ -10,6 +10,7 @@ public class PlatformTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         animationController.SetBool("trigger", true);
+        // Add the colliding gameobject to the list, to be checked later
         collidingObjects.Add(other.gameObject);
     }
 
@@ -18,7 +19,7 @@ public class PlatformTrigger : MonoBehaviour
         collidingObjects.Remove(other.gameObject);
         if (collidingObjects.Count == 0)
         {
-            //Make sure no other objects are colliding, for example the cube has exited but the player is still colliding
+            // Make sure no other objects are colliding, for example the cube has exited but the player is still colliding
             animationController.SetBool("trigger", false);
         }
     }
