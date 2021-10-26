@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float jumpPower = 5f;
 
-            if (playerCollision.superJumpsRemaining > 0)
+            if (playerCollision.GetSuperJumps() > 0)
             {
                 jumpPower *= 1.5f;
                 playerCollision.DecreaseSuperJump();

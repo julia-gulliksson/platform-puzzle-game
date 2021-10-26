@@ -8,10 +8,19 @@ public class Score : MonoBehaviour
     [SerializeField] TextMeshProUGUI superjumpsText;
     [SerializeField] PlayerCollision playerCollision;
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        coinsText.text = playerCollision.coins.ToString();
-        superjumpsText.text = playerCollision.superJumpsRemaining.ToString();
+        PlayerCollision.superJumpCountChange += UpdateSuperJumpText;
+        PlayerCollision.coinCountChange += UpdateCoinText;
+    }
+
+    void UpdateSuperJumpText(int superJumps)
+    {
+        superjumpsText.text = superJumps.ToString();
+    }
+
+    void UpdateCoinText(int coins)
+    {
+        coinsText.text = coins.ToString();
     }
 }

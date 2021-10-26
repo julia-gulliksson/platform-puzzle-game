@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public int superJumpsRemaining = 0;
-    public int coins = 0;
+    /**
+     * This class handles player collision with coins and superjump coins
+     * (Goal is to only manipulate the private properties and serve as a provider of events)
+     */
+    public delegate void SuperJumpCount(int superJumps);
+    public static event SuperJumpCount superJumpCountChange;
+
+    public delegate void CoinCount(int coins);
+    public static event CoinCount coinCountChange;
+
+    private int superJumpsRemaining = 0;
+    private int coins = 0;
 
     void OnTriggerEnter(Collider other)
     {
@@ -22,17 +32,30 @@ public class PlayerCollision : MonoBehaviour
     void HandleSuperjumpCoinCollision(Collider coin)
     {
         Destroy(coin.gameObject);
-        superJumpsRemaining++;
+        IncreaseSuperJump();
     }
 
     void HandleCoinCollision(Collider coin)
     {
         Destroy(coin.gameObject);
         coins++;
+        coinCountChange?.Invoke(coins);
     }
 
     public void DecreaseSuperJump()
     {
         superJumpsRemaining--;
+        superJumpCountChange?.Invoke(superJumpsRemaining);
+    }
+
+    public void IncreaseSuperJump()
+    {
+        superJumpsRemaining++;
+        superJumpCountChange?.Invoke(superJumpsRemaining);
+    }
+
+    public int GetSuperJumps()
+    {
+        return superJumpsRemaining;
     }
 }

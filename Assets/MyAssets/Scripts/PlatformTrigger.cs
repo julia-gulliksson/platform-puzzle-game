@@ -9,7 +9,12 @@ public class PlatformTrigger : MonoBehaviour
     public static event PlatformTriggered platformTriggered;
 
     [SerializeField] Animator animationController;
-    List<GameObject> collidingObjects = new List<GameObject>();
+    List<GameObject> collidingObjects;
+
+    private void OnEnable()
+    {
+        collidingObjects = new List<GameObject>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
