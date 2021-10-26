@@ -21,21 +21,27 @@ public class PickUpObjects : MonoBehaviour
     {
         if (Input.GetButton("Fire3") && heldObject == null && playerMovement.isGrounded)
         {
-            Vector3 forward = transform.TransformDirection(0, -1, 0);
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, forward, out hit, pickUpRange))
-            {
-                if (hit.transform.gameObject.layer == 9)
-                {
-                    // Object is a rock, pick it up
-                    HandlePickUp(hit.transform.gameObject);
-                }
-            }
+            HandleRayCast();
         }
 
         if ((!Input.GetButton("Fire3") && heldObject != null) || (!playerMovement.isGrounded && heldObject != null))
         {
             HandleDrop();
+        }
+    }
+
+    void HandleRayCast()
+    {
+
+        Vector3 forward = transform.TransformDirection(0, -1, 0);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, forward, out hit, pickUpRange))
+        {
+            if (hit.transform.gameObject.layer == 9)
+            {
+                // Object is a rock, pick it up
+                HandlePickUp(hit.transform.gameObject);
+            }
         }
     }
 
