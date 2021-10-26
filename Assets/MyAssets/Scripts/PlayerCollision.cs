@@ -31,7 +31,7 @@ public class PlayerCollision : MonoBehaviour
         coins++;
     }
 
-    public void RemoveSuperJump()
+    public void DecreaseSuperJump()
     {
         superJumpsRemaining--;
     }

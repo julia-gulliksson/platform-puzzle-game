@@ -1222,6 +1222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1403680286938699430, guid: 072f3d36c5b30184dbcee1f18364ec68, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1469366210048449549, guid: 072f3d36c5b30184dbcee1f18364ec68, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1609,8 +1613,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.3206496, z: 1}
-  m_Center: {x: 0, y: 0.6533569, z: 0}
+  m_Size: {x: 0.6426619, y: 2.3206496, z: 1}
+  m_Center: {x: -0.013220847, y: 0.6533569, z: 0}
 --- !u!95 &1149564611
 Animator:
   serializedVersion: 3
@@ -2864,12 +2868,20 @@ PrefabInstance:
       value: Platform Trigger
       objectReference: {fileID: 0}
     - target: {fileID: 8385452606462400574, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0011778
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385452606462400574, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
       propertyPath: m_Size.y
       value: 0.9726193
       objectReference: {fileID: 0}
     - target: {fileID: 8385452606462400574, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
       propertyPath: m_Size.z
       value: 0.99741143
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385452606462400574, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0005889237
       objectReference: {fileID: 0}
     - target: {fileID: 8385452606462400574, guid: 88dd48d791ed99d44ae9d47733080bc7, type: 3}
       propertyPath: m_Center.y
