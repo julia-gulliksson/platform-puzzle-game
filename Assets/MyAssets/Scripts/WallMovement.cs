@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WallMovement : MonoBehaviour
 {
-
     [SerializeField] Animator animationController;
     void OnEnable()
     {
@@ -18,7 +17,7 @@ public class WallMovement : MonoBehaviour
 
     void MovePlatform(bool entered)
     {
-        Debug.Log("Moved!" + entered);
+        // Depending on if the platform has been triggered or not, the wall will move up or down
         animationController.SetBool("platformTriggered", entered);
     }
 }

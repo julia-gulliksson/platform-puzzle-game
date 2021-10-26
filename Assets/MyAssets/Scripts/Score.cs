@@ -14,6 +14,12 @@ public class Score : MonoBehaviour
         PlayerCollision.coinCountChange += UpdateCoinText;
     }
 
+    private void OnDisable()
+    {
+        PlayerCollision.superJumpCountChange -= UpdateSuperJumpText;
+        PlayerCollision.coinCountChange -= UpdateCoinText;
+    }
+
     void UpdateSuperJumpText(int superJumps)
     {
         superjumpsText.text = superJumps.ToString();
