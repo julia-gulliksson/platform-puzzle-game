@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] Text coinsText;
-    [SerializeField] Text superjumpsText;
+    [SerializeField] TextMeshProUGUI coinsText;
+    [SerializeField] TextMeshProUGUI superjumpsText;
     [SerializeField] PlayerCollision playerCollision;
 
     // Update is called once per frame
