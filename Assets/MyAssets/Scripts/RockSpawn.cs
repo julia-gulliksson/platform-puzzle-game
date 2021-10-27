@@ -3,14 +3,9 @@ using UnityEngine;
 public class CubeSpawn : MonoBehaviour
 {
     bool destroyed = false;
-    Vector3 initialPosition;
+    [SerializeField] Vector3 initialPosition;
     public Transform prefab;
     [SerializeField] float heightOffset = 0.7f;
-    void Start()
-    {
-        // Save the initial position of the cube
-        initialPosition = new Vector3(transform.position.x, transform.position.y + heightOffset, transform.position.z);
-    }
 
     void FixedUpdate()
     {
@@ -25,7 +20,7 @@ public class CubeSpawn : MonoBehaviour
 
     void RespawnCube()
     {
-        Instantiate(prefab, initialPosition, Quaternion.identity);
+        Instantiate(prefab, new Vector3(initialPosition.x, initialPosition.y + heightOffset, initialPosition.z), Quaternion.identity);
         Destroy(gameObject);
     }
 }
