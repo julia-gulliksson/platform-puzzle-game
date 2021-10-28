@@ -9,7 +9,7 @@ public class WallMovement : MonoBehaviour
     [SerializeField] int triggerId;
     void OnEnable()
     {
-        animationController = gameObject.GetComponent<Animator>();
+        animationController = GetComponent<Animator>();
         PlatformTrigger.platformTriggered += MovePlatform;
     }
 
