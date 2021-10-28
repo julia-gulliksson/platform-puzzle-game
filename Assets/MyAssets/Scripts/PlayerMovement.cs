@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     [SerializeField] PlayerCollision playerCollision;
     public bool isGrounded;
+    public GameObject gameOverUI;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -60,10 +62,10 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckIfFalling()
     {
-        if (rb.position.y <= -1f)
+        if (rb.position.y <= -1.4f)
         {
-            // Player has fallen off the edge, restart the level
-            FindObjectOfType<GameManager>().EndGame();
+            // Player has fallen off the edge, show Game over ui
+            gameOverUI.SetActive(true);
         }
     }
 

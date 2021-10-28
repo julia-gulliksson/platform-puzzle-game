@@ -20,6 +20,7 @@ public class TutorialTrigger : MonoBehaviour
 
     void SetPickedUp()
     {
+        // Player has picked up an object, deactivate the tutorial text
         hasPickedUp = true;
         tutorialUI.SetActive(false);
     }
@@ -35,7 +36,7 @@ public class TutorialTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 6)
+        if (other.gameObject.layer == 6 && !hasPickedUp)
         {
             tutorialAnimationController.SetBool("fadeIn", false);
         }
