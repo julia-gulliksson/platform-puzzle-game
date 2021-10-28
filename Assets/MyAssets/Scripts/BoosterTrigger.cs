@@ -15,9 +15,7 @@ public class BoosterTrigger : MonoBehaviour
     void BoostCollidingObject(Collider other)
     {
         Rigidbody colliderRb = other.gameObject.GetComponent<Rigidbody>();
-        float forceNumber = 8;
-        Vector3 force;
-        force = Vector3.up * forceNumber;
-        colliderRb.AddForce(force, ForceMode.Impulse);
+        float forceNumber = 6;
+        colliderRb.AddForce(Vector3.up * forceNumber, ForceMode.Impulse);
     }
 }
