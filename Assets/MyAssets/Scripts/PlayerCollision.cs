@@ -37,7 +37,12 @@ public class PlayerCollision : MonoBehaviour
 
     void HandleCoinCollision(Collider coin)
     {
+        IncreaseCoins();
         Destroy(coin.gameObject);
+    }
+
+    void IncreaseCoins()
+    {
         coins++;
         coinCountChange?.Invoke(coins);
     }

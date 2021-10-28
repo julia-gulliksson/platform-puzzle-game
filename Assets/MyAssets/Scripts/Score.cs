@@ -1,13 +1,22 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-
+using System;
 public class Score : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI coinsText;
-    [SerializeField] TextMeshProUGUI superjumpsText;
-    [SerializeField] PlayerCollision playerCollision;
+    [SerializeField] TextMeshProUGUI coinsScore;
+    [SerializeField] TextMeshProUGUI superJumpsScore;
 
+    //Animators
+    [SerializeField] Animator superJumpsTextAnimator;
+    [SerializeField] Animator coinsTextAnimator;
+    Animator coinsScoreAnimator;
+    Animator superJumpsScoreAnimator;
+
+    private void Start()
+    {
+        coinsScoreAnimator = coinsScore.GetComponent<Animator>();
+        superJumpsScoreAnimator = superJumpsScore.GetComponent<Animator>();
+    }
     private void OnEnable()
     {
         PlayerCollision.superJumpCountChange += UpdateSuperJumpText;
@@ -22,12 +31,19 @@ public class Score : MonoBehaviour
 
     void UpdateSuperJumpText(int superJumps)
     {
-        superjumpsText.text = superJumps.ToString();
+        if (Int32.Parse(superJumpsScore.text) < superJumps)
+        {
+            // Only play animation if the superjump coin has been picked up, not when it's used up
+            superJumpsScoreAnimator.SetTrigger("pickedUp");
+            superJumpsTextAnimator.SetTrigger("pickedUp");
+        }
+        superJumpsScore.text = superJumps.ToString();
     }
 
     void UpdateCoinText(int coins)
     {
-        coinsText.text = coins.ToString();
-        coinsText.GetComponent<Animator>().SetBool("pickedUp", true);
+        coinsScore.text = coins.ToString();
+        coinsScoreAnimator.SetTrigger("pickedUp");
+        coinsTextAnimator.SetTrigger("pickedUp");
     }
 }
