@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CubeSpawn : MonoBehaviour
+public class RockSpawn : MonoBehaviour
 {
     bool destroyed = false;
     [SerializeField] Vector3 initialPosition;
