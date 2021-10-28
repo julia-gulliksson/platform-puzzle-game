@@ -28,5 +28,6 @@ public class Score : MonoBehaviour
     void UpdateCoinText(int coins)
     {
         coinsText.text = coins.ToString();
+        coinsText.GetComponent<Animator>().SetBool("pickedUp", true);
     }
 }
