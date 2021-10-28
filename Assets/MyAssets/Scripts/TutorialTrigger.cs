@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TutorialTrigger : MonoBehaviour
 {
+    [SerializeField] Animator tutorialAnimationController;
     [SerializeField] GameObject tutorialUI;
     bool hasPickedUp = false;
 
@@ -20,13 +21,15 @@ public class TutorialTrigger : MonoBehaviour
     void SetPickedUp()
     {
         hasPickedUp = true;
+        tutorialUI.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 6 && !hasPickedUp)
         {
-            tutorialUI.SetActive(true);
+            if (!tutorialUI.activeSelf) tutorialUI.SetActive(true);
+            tutorialAnimationController.SetBool("fadeIn", true);
         }
     }
 
@@ -34,7 +37,7 @@ public class TutorialTrigger : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            tutorialUI.SetActive(false);
+            tutorialAnimationController.SetBool("fadeIn", false);
         }
     }
 }
