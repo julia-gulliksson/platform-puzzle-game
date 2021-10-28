@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PickUpObjects : MonoBehaviour
 {
+    public delegate void ObjectPickedUp();
+    public static event ObjectPickedUp objectPickedUp;
+
     GameObject heldObject;
     [SerializeField] float pickUpRange = 5;
     Transform playerTransform;
     Collider handsCollider;
     Collider playerCollider;
     [SerializeField] PlayerMovement playerMovement;
+    bool hasPickedUp = false;
     void Start()
     {
         playerTransform = transform.parent;
@@ -77,6 +81,13 @@ public class PickUpObjects : MonoBehaviour
         objectToPickUp.transform.position = new Vector3(xPosition, playerTransform.position.y - 0.1f, 0);
         objectToPickUp.transform.eulerAngles = new Vector3(0, 0, 0);
         heldObject = objectToPickUp;
+
+        //If player has not picked an object up before, invoke event
+        if (!hasPickedUp)
+        {
+            objectPickedUp?.Invoke();
+        }
+        hasPickedUp = true;
     }
 
     void HandleDrop()
