@@ -11,11 +11,15 @@ public class Score : MonoBehaviour
     [SerializeField] Animator coinsTextAnimator;
     Animator coinsScoreAnimator;
     Animator superJumpsScoreAnimator;
+    Animator[] superJumpCoinAnimators;
+    Animator[] coinAnimators;
 
     private void Start()
     {
         coinsScoreAnimator = coinsScore.GetComponent<Animator>();
         superJumpsScoreAnimator = superJumpsScore.GetComponent<Animator>();
+        superJumpCoinAnimators = new Animator[] { superJumpsScoreAnimator, superJumpsTextAnimator };
+        coinAnimators = new Animator[] { coinsScoreAnimator, coinsTextAnimator };
     }
     private void OnEnable()
     {
@@ -29,13 +33,20 @@ public class Score : MonoBehaviour
         PlayerCollision.coinCountChange -= UpdateCoinText;
     }
 
+    void AnimateCoins(Animator[] animators)
+    {
+        foreach (Animator animator in animators)
+        {
+            animator.SetTrigger("pickedUp");
+        }
+    }
+
     void UpdateSuperJumpText(int superJumps)
     {
         if (Int32.Parse(superJumpsScore.text) < superJumps)
         {
-            // Only play animation if the superjump coin has been picked up, not when it's used up
-            superJumpsScoreAnimator.SetTrigger("pickedUp");
-            superJumpsTextAnimator.SetTrigger("pickedUp");
+            // Only play animation if the superjump coin has been picked up, not when it's being used up (player is jumping)
+            AnimateCoins(superJumpCoinAnimators);
         }
         superJumpsScore.text = superJumps.ToString();
     }
@@ -43,7 +54,6 @@ public class Score : MonoBehaviour
     void UpdateCoinText(int coins)
     {
         coinsScore.text = coins.ToString();
-        coinsScoreAnimator.SetTrigger("pickedUp");
-        coinsTextAnimator.SetTrigger("pickedUp");
+        AnimateCoins(coinAnimators);
     }
 }

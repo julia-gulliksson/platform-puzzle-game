@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         MovePlayer();
 
-        CheckIfNotGrounded();
+        CheckIfGrounded();
 
         HandleJump();
     }
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         transform.LookAt(transform.position + new Vector3(horizontalInput, 0.0f, 0));
     }
 
-    void CheckIfNotGrounded()
+    void CheckIfGrounded()
     {
         if (Physics.OverlapSphere(handgroundCheckTransform.position, 0.1f, handColliderMask).Length != 0)
         {

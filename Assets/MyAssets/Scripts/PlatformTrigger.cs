@@ -22,7 +22,7 @@ public class PlatformTrigger : MonoBehaviour
     {
         animationController.SetBool("trigger", true);
 
-        // Add the colliding gameobject to the list, to be checked later
+        // Add the colliding gameobject to the list, to be checked in OnTriggerExit
         collidingObjects.Add(other.gameObject);
 
         // If defined (at least one function is subscribed), invoke event
