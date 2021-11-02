@@ -7,9 +7,4 @@ public class PlayerCollision : MonoBehaviour
         IBaseCoin baseCoin = other.gameObject.GetComponent<IBaseCoin>();
         baseCoin?.HandleCollision();
     }
-
-    public int GetSuperJumps()
-    {
-        return 0;
-    }
 }
