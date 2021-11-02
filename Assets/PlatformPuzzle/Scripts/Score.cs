@@ -23,14 +23,14 @@ public class Score : MonoBehaviour
     }
     private void OnEnable()
     {
-        PlayerCollision.superJumpCountChange += UpdateSuperJumpText;
-        PlayerCollision.coinCountChange += UpdateCoinText;
+        // PlayerCollision.superJumpCountChange += UpdateSuperJumpText;
+        //PlayerCollision.coinCountChange += UpdateCoinText;
     }
 
     private void OnDisable()
     {
-        PlayerCollision.superJumpCountChange -= UpdateSuperJumpText;
-        PlayerCollision.coinCountChange -= UpdateCoinText;
+        //PlayerCollision.superJumpCountChange -= UpdateSuperJumpText;
+        // PlayerCollision.coinCountChange -= UpdateCoinText;
     }
 
     void AnimateCoins(Animator[] animators)
