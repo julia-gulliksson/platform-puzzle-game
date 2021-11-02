@@ -8,10 +8,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform handgroundCheckTransform = null;
     [SerializeField] LayerMask playerMask;
     [SerializeField] LayerMask handColliderMask;
+    [SerializeField] ScoreManager scoreManager;
     bool jumpKeyWasPressed = false;
     float horizontalInput;
     Rigidbody rb;
-    [SerializeField] PlayerCollision playerCollision;
     public bool isGrounded;
     public GameObject gameOverUI;
 
@@ -80,10 +80,10 @@ public class PlayerMovement : MonoBehaviour
         {
             float jumpPower = 5f;
 
-            if (playerCollision.GetSuperJumps() > 0)
+            if (scoreManager.superJumpCoins > 0)
             {
                 jumpPower *= 1.5f;
-                //playerCollision.DecreaseSuperJump();
+                scoreManager.DecreaseSuperJumps();
             }
             rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
             jumpKeyWasPressed = false;

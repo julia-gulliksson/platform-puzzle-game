@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
-public class Score : MonoBehaviour
+public class ScoreUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI coinsScore;
     [SerializeField] TextMeshProUGUI superJumpsScore;
@@ -23,14 +23,14 @@ public class Score : MonoBehaviour
     }
     private void OnEnable()
     {
-        // PlayerCollision.superJumpCountChange += UpdateSuperJumpText;
-        //PlayerCollision.coinCountChange += UpdateCoinText;
+        ScoreManager.superJumpCoinChange += UpdateSuperJumpText;
+        ScoreManager.coinChange += UpdateCoinText;
     }
 
     private void OnDisable()
     {
-        //PlayerCollision.superJumpCountChange -= UpdateSuperJumpText;
-        // PlayerCollision.coinCountChange -= UpdateCoinText;
+        ScoreManager.superJumpCoinChange -= UpdateSuperJumpText;
+        ScoreManager.coinChange -= UpdateCoinText;
     }
 
     void AnimateCoins(Animator[] animators)
