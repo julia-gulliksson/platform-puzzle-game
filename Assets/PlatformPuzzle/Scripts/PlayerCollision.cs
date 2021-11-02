@@ -35,60 +35,20 @@ public abstract class BaseCoin : MonoBehaviour
 
 public class PlayerCollision : MonoBehaviour
 {
-    /**
-     * This class handles player collision with coins and superjump coins
-     * (Goal is to only manipulate the private properties and serve as a provider of events)
-     */
-
-    private int superJumpsRemaining = 0;
-    private int coins = 0;
 
     void OnTriggerEnter(Collider other)
     {
-        //if (LayerMask.LayerToName(other.gameObject.layer) == "Coin")
-        //{
-        //    HandleCoinCollision(other);
-        //}
-        //if (LayerMask.LayerToName(other.gameObject.layer) == "SuperJumpCoin")
-        //{
-        //    HandleSuperjumpCoinCollision(other);
-        //}
-
-        Debug.Log(other.gameObject.name);
-
-        BaseCoin b = (BaseCoin)other.gameObject.GetComponent<BaseCoin>();
-
-        if (b != null)
-            b.HandleCollision(other);
-
+        BaseCoin b = other.gameObject.GetComponent<BaseCoin>();
+        b?.HandleCollision(other);
     }
 
     void HandleSuperjumpCoinCollision(Collider coin)
     {
         Destroy(coin.gameObject);
-        IncreaseSuperJump();
-    }
-
-    void HandleCoinCollision(Collider coin)
-    {
-        //IncreaseCoins();
-        Destroy(coin.gameObject);
-    }
-
-    public void DecreaseSuperJump()
-    {
-        superJumpsRemaining--;
-        //superJumpCountChange?.Invoke(superJumpsRemaining);
-    }
-
-    public void IncreaseSuperJump()
-    {
-        superJumpsRemaining++;
-        //superJumpCountChange?.Invoke(superJumpsRemaining);
     }
 
     public int GetSuperJumps()
     {
-        return superJumpsRemaining;
+        return 0;
     }
 }
