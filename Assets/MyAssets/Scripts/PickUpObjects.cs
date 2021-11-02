@@ -7,13 +7,16 @@ public class PickUpObjects : MonoBehaviour
     public delegate void ObjectPickedUp();
     public static event ObjectPickedUp objectPickedUp;
 
-    GameObject heldObject;
+    [SerializeField] PlayerMovement playerMovement;
     [SerializeField] float pickUpRange = 5;
+    [SerializeField] LayerMask _interactionMask;
+
+    GameObject heldObject;
     Transform playerTransform;
     Collider handsCollider;
     Collider playerCollider;
-    [SerializeField] PlayerMovement playerMovement;
     bool hasPickedUp = false;
+
     void Start()
     {
         playerTransform = transform.parent;
@@ -36,16 +39,11 @@ public class PickUpObjects : MonoBehaviour
 
     void HandleRayCast()
     {
-
         Vector3 forward = transform.TransformDirection(0, -1, 0);
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, forward, out hit, pickUpRange))
+        if (Physics.Raycast(transform.position, forward, out hit, pickUpRange, _interactionMask))
         {
-            if (hit.transform.gameObject.layer == 9)
-            {
-                // Object is a rock, pick it up
-                HandlePickUp(hit.transform.gameObject);
-            }
+            HandlePickUp(hit.transform.gameObject);
         }
     }
 
