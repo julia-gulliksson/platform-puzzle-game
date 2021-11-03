@@ -4,43 +4,36 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public delegate void CoinChange(int coins);
-    public static event CoinChange coinChange;
-
-    public delegate void SuperJumpCoinChange(int coins);
-    public static event SuperJumpCoinChange superJumpCoinChange;
-
     public int superJumpCoins = 0;
-    int coins = 0;
+    public int coins = 0;
 
     private void OnEnable()
     {
-        SuperJumpCoin.coinIncrease += IncreaseSuperJumps;
-        Coin.coinIncrease += IncreaseCoins;
+        GameEventsManager.current.onSuperJumpCoinCollected += IncreaseSuperJumps;
+        GameEventsManager.current.onCoinCollected += IncreaseCoins;
     }
 
     private void OnDisable()
     {
-        SuperJumpCoin.coinIncrease -= IncreaseSuperJumps;
-        Coin.coinIncrease -= IncreaseCoins;
-
+        GameEventsManager.current.onSuperJumpCoinCollected -= IncreaseSuperJumps;
+        GameEventsManager.current.onCoinCollected -= IncreaseCoins;
     }
 
     void IncreaseSuperJumps()
     {
         superJumpCoins++;
-        superJumpCoinChange?.Invoke(superJumpCoins);
+        GameEventsManager.current.SuperJumpCoinsUpdated();
     }
 
     public void DecreaseSuperJumps()
     {
         superJumpCoins--;
-        superJumpCoinChange?.Invoke(superJumpCoins);
+        GameEventsManager.current.SuperJumpCoinsUpdated();
     }
 
     void IncreaseCoins()
     {
         coins++;
-        coinChange?.Invoke(coins);
+        GameEventsManager.current.CoinsUpdated();
     }
 }

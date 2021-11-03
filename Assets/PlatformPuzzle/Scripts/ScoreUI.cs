@@ -5,6 +5,7 @@ public class ScoreUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI coinsScore;
     [SerializeField] TextMeshProUGUI superJumpsScore;
+    [SerializeField] ScoreManager scoreManager;
 
     //Animators
     [SerializeField] Animator superJumpsTextAnimator;
@@ -23,14 +24,14 @@ public class ScoreUI : MonoBehaviour
     }
     private void OnEnable()
     {
-        ScoreManager.superJumpCoinChange += UpdateSuperJumpText;
-        ScoreManager.coinChange += UpdateCoinText;
+        GameEventsManager.current.onSuperJumpCoinsUpdate += UpdateSuperJumpText;
+        GameEventsManager.current.onCoinsUpdate += UpdateCoinText;
     }
 
     private void OnDisable()
     {
-        ScoreManager.superJumpCoinChange -= UpdateSuperJumpText;
-        ScoreManager.coinChange -= UpdateCoinText;
+        GameEventsManager.current.onSuperJumpCoinsUpdate -= UpdateSuperJumpText;
+        GameEventsManager.current.onCoinsUpdate += UpdateCoinText;
     }
 
     void AnimateCoins(Animator[] animators)
@@ -41,19 +42,19 @@ public class ScoreUI : MonoBehaviour
         }
     }
 
-    void UpdateSuperJumpText(int superJumps)
+    void UpdateSuperJumpText()
     {
-        if (Int32.Parse(superJumpsScore.text) < superJumps)
+        if (Int32.Parse(superJumpsScore.text) < scoreManager.superJumpCoins)
         {
             // Only play animation if the superjump coin has been picked up, not when it's being used up (player is jumping)
             AnimateCoins(superJumpCoinAnimators);
         }
-        superJumpsScore.text = superJumps.ToString();
+        superJumpsScore.text = scoreManager.superJumpCoins.ToString();
     }
 
-    void UpdateCoinText(int coins)
+    void UpdateCoinText()
     {
-        coinsScore.text = coins.ToString();
+        coinsScore.text = scoreManager.coins.ToString();
         AnimateCoins(coinAnimators);
     }
 }
