@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlatformTrigger : MonoBehaviour
 {
-    // Declare delegate and event
-    public delegate void PlatformTriggered(bool entered, int id);
-    public static event PlatformTriggered platformTriggered;
 
     [SerializeField] Animator animationController;
     List<GameObject> collidingObjects;
@@ -25,8 +22,7 @@ public class PlatformTrigger : MonoBehaviour
         // Add the colliding gameobject to the list, to be checked in OnTriggerExit
         collidingObjects.Add(other.gameObject);
 
-        // If defined (at least one function is subscribed), invoke event
-        platformTriggered?.Invoke(true, id);
+        GameEventsManager.current.PlatformTriggered(true, id);
     }
 
     private void OnTriggerExit(Collider other)
@@ -37,7 +33,7 @@ public class PlatformTrigger : MonoBehaviour
         if (collidingObjects.Count == 0)
         {
             animationController.SetBool("trigger", false);
-            platformTriggered?.Invoke(false, id);
+            GameEventsManager.current.PlatformTriggered(false, id);
         }
     }
 }

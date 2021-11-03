@@ -10,12 +10,12 @@ public class WallMovement : MonoBehaviour
     void OnEnable()
     {
         animationController = GetComponent<Animator>();
-        PlatformTrigger.platformTriggered += MovePlatform;
+        GameEventsManager.current.onPlatformTriggered += MovePlatform;
     }
 
     void OnDisable()
     {
-        PlatformTrigger.platformTriggered -= MovePlatform;
+        GameEventsManager.current.onPlatformTriggered -= MovePlatform;
     }
 
     void MovePlatform(bool entered, int id)

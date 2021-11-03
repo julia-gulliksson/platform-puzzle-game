@@ -27,8 +27,9 @@ public class TutorialTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6 && !hasPickedUp)
+        if (other.CompareTag("Player") && !hasPickedUp)
         {
+            // TODO: Make into an event
             if (!tutorialUI.activeSelf) tutorialUI.SetActive(true);
             tutorialAnimationController.SetBool("fadeIn", true);
         }
@@ -36,7 +37,7 @@ public class TutorialTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 6 && !hasPickedUp)
+        if (other.CompareTag("Player") && !hasPickedUp)
         {
             tutorialAnimationController.SetBool("fadeIn", false);
         }
