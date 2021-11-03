@@ -7,13 +7,13 @@ public class WallMovement : MonoBehaviour
     Animator animationController;
     // The platform trigger that this wall belongs to
     [SerializeField] int triggerId;
-    void OnEnable()
+    void Start()
     {
         animationController = GetComponent<Animator>();
         GameEventsManager.current.onPlatformTriggered += MovePlatform;
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         GameEventsManager.current.onPlatformTriggered -= MovePlatform;
     }

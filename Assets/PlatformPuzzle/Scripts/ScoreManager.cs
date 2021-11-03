@@ -7,13 +7,13 @@ public class ScoreManager : MonoBehaviour
     public int superJumpCoins = 0;
     public int coins = 0;
 
-    private void OnEnable()
+    private void Start()
     {
         GameEventsManager.current.onSuperJumpCoinCollected += IncreaseSuperJumps;
         GameEventsManager.current.onCoinCollected += IncreaseCoins;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         GameEventsManager.current.onSuperJumpCoinCollected -= IncreaseSuperJumps;
         GameEventsManager.current.onCoinCollected -= IncreaseCoins;
@@ -34,6 +34,7 @@ public class ScoreManager : MonoBehaviour
     void IncreaseCoins()
     {
         coins++;
+        Debug.Log(coins + " IN SCORE MANAGER");
         GameEventsManager.current.CoinsUpdated();
     }
 }

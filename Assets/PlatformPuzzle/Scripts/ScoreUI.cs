@@ -21,14 +21,12 @@ public class ScoreUI : MonoBehaviour
         superJumpsScoreAnimator = superJumpsScore.GetComponent<Animator>();
         superJumpCoinAnimators = new Animator[] { superJumpsScoreAnimator, superJumpsTextAnimator };
         coinAnimators = new Animator[] { coinsScoreAnimator, coinsTextAnimator };
-    }
-    private void OnEnable()
-    {
+
         GameEventsManager.current.onSuperJumpCoinsUpdate += UpdateSuperJumpText;
         GameEventsManager.current.onCoinsUpdate += UpdateCoinText;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         GameEventsManager.current.onSuperJumpCoinsUpdate -= UpdateSuperJumpText;
         GameEventsManager.current.onCoinsUpdate += UpdateCoinText;
@@ -55,6 +53,8 @@ public class ScoreUI : MonoBehaviour
     void UpdateCoinText()
     {
         coinsScore.text = scoreManager.coins.ToString();
+
+        Debug.Log(scoreManager.coins + " IN UI");
         AnimateCoins(coinAnimators);
     }
 }
