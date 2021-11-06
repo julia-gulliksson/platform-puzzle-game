@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     public bool isGrounded;
     public GameObject gameOverUI;
+    float moveSpeed = 3f;
+
+    Quaternion targetRotation;
+    float rotationSpeed = 15f;
+    Vector3 direction;
 
     void Start()
     {
@@ -43,8 +48,12 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         //Make player move on the x axis
-        rb.velocity = new Vector3(horizontalInput * 3, rb.velocity.y, 0);
-        transform.LookAt(transform.position + new Vector3(horizontalInput, 0.0f, 0));
+        Vector3 movement = new Vector3(horizontalInput * moveSpeed, rb.velocity.y, 0);
+        rb.velocity = movement;
+        if (movement.x != 0f)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(movement.x, 0, 0)), Time.deltaTime * rotationSpeed);
+        }
     }
 
     void CheckIfGrounded()
