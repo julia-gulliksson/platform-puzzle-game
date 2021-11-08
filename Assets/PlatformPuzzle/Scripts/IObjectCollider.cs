@@ -1,5 +1,5 @@
 
 public interface IObjectCollider
 {
-    void HandleCollision();
+    void HandleSpikeCollision();
 }
