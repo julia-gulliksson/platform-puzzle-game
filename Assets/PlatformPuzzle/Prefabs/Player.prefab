@@ -222,8 +222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b598c8bb41169a4dabeb12f9498d24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpRange: 5
   playerMovement: {fileID: 7339064386034180504}
+  pickUpRange: 5
+  _interactionMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &4405482385543726775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -284,7 +287,7 @@ GameObject:
   - component: {fileID: 5975265809556649399}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,7 +410,7 @@ MonoBehaviour:
   handColliderMask:
     serializedVersion: 2
     m_Bits: 0
-  playerCollision: {fileID: 5975265809556649399}
+  scoreManager: {fileID: 0}
   isGrounded: 0
   gameOverUI: {fileID: 0}
 --- !u!114 &5975265809556649399
