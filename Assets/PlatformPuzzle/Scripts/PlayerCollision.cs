@@ -10,6 +10,6 @@ public class PlayerCollision : MonoBehaviour, IObjectCollider
 
     public void HandleSpikeCollision()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
