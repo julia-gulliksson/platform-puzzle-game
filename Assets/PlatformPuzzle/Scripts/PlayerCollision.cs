@@ -4,8 +4,8 @@ public class PlayerCollision : MonoBehaviour, IObjectCollider
 {
     void OnTriggerEnter(Collider other)
     {
-        IBaseCoin baseCoin = other.gameObject.GetComponent<IBaseCoin>();
-        baseCoin?.HandleCollision();
+        ICollectible collectible = other.gameObject.GetComponent<ICollectible>();
+        collectible?.HandleCollect();
     }
 
     public void HandleSpikeCollision()

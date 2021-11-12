@@ -1,4 +1,4 @@
-public interface IBaseCoin
+public interface ICollectible
 {
-    void HandleCollision();
+    void HandleCollect();
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
-public class SuperJumpCoin : MonoBehaviour, IBaseCoin
+public class SuperJumpCoin : MonoBehaviour, ICollectible
 {
-    public void HandleCollision()
+    public void HandleCollect()
     {
         GameEventsManager.current.SuperJumpCoinCollected();
         Destroy(gameObject);
