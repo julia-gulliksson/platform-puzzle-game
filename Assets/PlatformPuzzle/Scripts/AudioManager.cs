@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using System;
 
 public class AudioManager : MonoBehaviour
@@ -10,24 +9,51 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        current = this;
+        if (!HasMultipleInstances())
+        {
+            current = this;
+            SetSounds();
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        Play("Theme");
+    }
+
+    void SetSounds()
+    {
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
         }
     }
 
-    private void Start()
+    bool HasMultipleInstances()
     {
-
+        return current != null;
     }
 
     public void Play(string name)
     {
-        Sound selectedSound = Array.Find(sounds, sound => sound.name == name);
-        selectedSound.source.Play();
+        try
+        {
+            Sound selectedSound = Array.Find(sounds, sound => sound.name == name);
+            selectedSound.source.Play();
+        }
+        catch
+        {
+            Debug.LogWarning("Sound file '" + name + "' not found");
+        }
     }
 }

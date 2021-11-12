@@ -95,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
                 scoreManager.DecreaseSuperJumps();
             }
             rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
+            AudioManager.current.Play("Jump");
             jumpKeyWasPressed = false;
         }
     }
