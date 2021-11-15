@@ -10,12 +10,12 @@ public class TutorialTrigger : MonoBehaviour
 
     void OnEnable()
     {
-        PickUpObjects.objectPickedUp += SetPickedUp;
+        GameEventsManager.current.onObjectPickedUp += SetPickedUp;
     }
 
     void OnDisable()
     {
-        PickUpObjects.objectPickedUp -= SetPickedUp;
+        GameEventsManager.current.onObjectPickedUp -= SetPickedUp;
     }
 
     void SetPickedUp()

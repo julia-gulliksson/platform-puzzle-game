@@ -3,9 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PickUpObjects : MonoBehaviour
 {
-    public delegate void ObjectPickedUp();
-    public static event ObjectPickedUp objectPickedUp;
-
     DefaultControls playerInputActions;
     InputAction pickUp;
 
@@ -100,7 +97,7 @@ public class PickUpObjects : MonoBehaviour
         //If player has not picked an object up before, invoke event
         if (!hasPickedUp)
         {
-            objectPickedUp?.Invoke();
+            GameEventsManager.current.PickedUpObject();
         }
         hasPickedUp = true;
     }

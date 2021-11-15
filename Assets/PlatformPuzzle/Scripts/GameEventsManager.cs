@@ -15,8 +15,9 @@ public class GameEventsManager : MonoBehaviour
 
     public event Action onCoinsUpdate;
 
-    public event Action<bool, int> onPlatformTriggered;
+    public event Action onObjectPickedUp;
 
+    public event Action<bool, int> onPlatformTriggered;
 
     void Awake()
     {
@@ -46,6 +47,11 @@ public class GameEventsManager : MonoBehaviour
     public void CoinsUpdated()
     {
         onCoinsUpdate?.Invoke();
+    }
+
+    public void PickedUpObject()
+    {
+        onObjectPickedUp?.Invoke();
     }
 
     public void PlatformTriggered(bool entered, int id)
