@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PickUpObjects : MonoBehaviour
 {
-    public delegate void ObjectPickedUp();
-    public static event ObjectPickedUp objectPickedUp;
+    DefaultControls playerInputActions;
+    InputAction pickUp;
 
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] float pickUpRange = 5;
@@ -16,6 +15,10 @@ public class PickUpObjects : MonoBehaviour
     Collider handsCollider;
     Collider playerCollider;
     bool hasPickedUp = false;
+    private void Awake()
+    {
+        playerInputActions = new DefaultControls();
+    }
 
     void Start()
     {
@@ -24,26 +27,37 @@ public class PickUpObjects : MonoBehaviour
         playerCollider = playerTransform.GetComponent<Collider>();
     }
 
+    private void OnEnable()
+    {
+        pickUp = playerInputActions.Player.PickUp;
+        pickUp.performed += HandleRayCast;
+        pickUp.canceled += HandleButtonUp;
+        pickUp.Enable();
+    }
+
+    private void OnDisable()
+    {
+        pickUp.Disable();
+    }
+
     void Update()
     {
-        if (Input.GetButton("Fire3") && heldObject == null && playerMovement.isGrounded)
-        {
-            HandleRayCast();
-        }
-
-        if ((!Input.GetButton("Fire3") && heldObject != null) || (!playerMovement.isGrounded && heldObject != null))
+        if ((!playerMovement.isGrounded && heldObject != null))
         {
             HandleDrop();
         }
     }
 
-    void HandleRayCast()
+    void HandleRayCast(InputAction.CallbackContext context)
     {
-        Vector3 forward = transform.TransformDirection(0, -1, 0);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, forward, out hit, pickUpRange, _interactionMask))
+        if (heldObject == null && playerMovement.isGrounded)
         {
-            HandlePickUp(hit.transform.gameObject);
+            Vector3 forward = transform.TransformDirection(0, -1, 0);
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, forward, out hit, pickUpRange, _interactionMask))
+            {
+                HandlePickUp(hit.transform.gameObject);
+            }
         }
     }
 
@@ -83,9 +97,17 @@ public class PickUpObjects : MonoBehaviour
         //If player has not picked an object up before, invoke event
         if (!hasPickedUp)
         {
-            objectPickedUp?.Invoke();
+            GameEventsManager.current.PickedUpObject();
         }
         hasPickedUp = true;
+    }
+
+    void HandleButtonUp(InputAction.CallbackContext context)
+    {
+        if (heldObject != null)
+        {
+            HandleDrop();
+        }
     }
 
     void HandleDrop()
