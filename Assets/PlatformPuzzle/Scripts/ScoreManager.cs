@@ -11,12 +11,14 @@ public class ScoreManager : MonoBehaviour
     {
         GameEventsManager.current.onSuperJumpCoinCollected += IncreaseSuperJumps;
         GameEventsManager.current.onCoinCollected += IncreaseCoins;
+        GameEventsManager.current.onSuperJumpUsed += DecreaseSuperJumps;
     }
 
     private void OnDestroy()
     {
         GameEventsManager.current.onSuperJumpCoinCollected -= IncreaseSuperJumps;
         GameEventsManager.current.onCoinCollected -= IncreaseCoins;
+        GameEventsManager.current.onSuperJumpUsed -= DecreaseSuperJumps;
     }
 
     void IncreaseSuperJumps()

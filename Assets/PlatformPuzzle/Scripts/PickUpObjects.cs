@@ -26,15 +26,15 @@ public class PickUpObjects : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire3") && heldObject == null && playerMovement.isGrounded)
-        {
-            HandleRayCast();
-        }
+        //if (Input.GetButton("Fire3") && heldObject == null && playerMovement.isGrounded)
+        //{
+        //    HandleRayCast();
+        //}
 
-        if ((!Input.GetButton("Fire3") && heldObject != null) || (!playerMovement.isGrounded && heldObject != null))
-        {
-            HandleDrop();
-        }
+        //if ((!Input.GetButton("Fire3") && heldObject != null) || (!playerMovement.isGrounded && heldObject != null))
+        //{
+        //    HandleDrop();
+        //}
     }
 
     void HandleRayCast()

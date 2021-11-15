@@ -1,58 +1,69 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    DefaultControls playerInputActions;
+    InputAction movement;
+    Vector3 moveVector;
+
     [SerializeField] Transform groundCheckTransform = null;
     [SerializeField] Transform handgroundCheckTransform = null;
     [SerializeField] LayerMask playerMask;
     [SerializeField] LayerMask handColliderMask;
     [SerializeField] ScoreManager scoreManager;
-    bool jumpKeyWasPressed = false;
-    float horizontalInput;
+
     Rigidbody rb;
     public bool isGrounded;
     public GameObject gameOverUI;
     float moveSpeed = 3f;
-
-    Quaternion targetRotation;
     float rotationSpeed = 15f;
-    Vector3 direction;
+
+    private void Awake()
+    {
+        playerInputActions = new DefaultControls();
+    }
+
+    private void OnEnable()
+    {
+        movement = playerInputActions.Player.Move;
+        movement.Enable();
+
+        playerInputActions.Player.Jump.performed += HandleJump;
+        playerInputActions.Player.Jump.Enable();
+    }
+
+    private void OnDisable()
+    {
+        movement.Disable();
+        playerInputActions.Player.Jump.Disable();
+    }
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpKeyWasPressed = true;
-        }
-        horizontalInput = Input.GetAxis("Horizontal");
-    }
-
     void FixedUpdate()
     {
         CheckIfFalling();
 
-        MovePlayer();
-
         CheckIfGrounded();
 
-        HandleJump();
+        MovePlayer();
     }
 
     void MovePlayer()
     {
-        //Make player move on the x axis
-        Vector3 movement = new Vector3(horizontalInput * moveSpeed, rb.velocity.y, 0);
-        rb.velocity = movement;
-        if (movement.x != 0f)
+        // Get movement value from WASD/arrow keys inputs
+        Vector2 direction = movement.ReadValue<Vector2>();
+        moveVector = new Vector3(direction.x * moveSpeed, rb.velocity.y, 0);
+        // Make player move on the x axis
+        rb.velocity = moveVector;
+        // Smooth rotate
+        if (moveVector.x != 0f)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(movement.x, 0, 0)), Time.deltaTime * rotationSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveVector.x, 0, 0)), Time.deltaTime * rotationSpeed);
         }
     }
 
@@ -78,25 +89,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void HandleJump()
+    void HandleJump(InputAction.CallbackContext context)
     {
         if (!isGrounded)
         {
             // Player is in the air, return to prevent jump
             return;
         }
-        if (jumpKeyWasPressed)
-        {
-            float jumpPower = 5f;
+        float jumpPower = 5f;
 
-            if (scoreManager.superJumpCoins > 0)
-            {
-                jumpPower *= 1.5f;
-                scoreManager.DecreaseSuperJumps();
-            }
-            rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
-            AudioManager.current.Play("Jump");
-            jumpKeyWasPressed = false;
+        if (scoreManager.superJumpCoins > 0)
+        {
+            jumpPower *= 1.5f;
+            GameEventsManager.current.SuperJumpUsed();
         }
+        rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
+        AudioManager.current.Play("Jump");
     }
 }

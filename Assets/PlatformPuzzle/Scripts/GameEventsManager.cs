@@ -9,6 +9,8 @@ public class GameEventsManager : MonoBehaviour
 
     public event Action onSuperJumpCoinsUpdate;
 
+    public event Action onSuperJumpUsed;
+
     public event Action onCoinCollected;
 
     public event Action onCoinsUpdate;
@@ -29,6 +31,11 @@ public class GameEventsManager : MonoBehaviour
     public void SuperJumpCoinsUpdated()
     {
         onSuperJumpCoinsUpdate?.Invoke();
+    }
+
+    public void SuperJumpUsed()
+    {
+        onSuperJumpUsed?.Invoke();
     }
 
     public void CoinCollected()
