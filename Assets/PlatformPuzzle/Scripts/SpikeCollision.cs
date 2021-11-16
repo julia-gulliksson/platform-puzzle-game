@@ -6,7 +6,7 @@ public class SpikeCollision : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        IObjectCollider objectCollider = other.gameObject.GetComponent<IObjectCollider>();
+        IDestroyable objectCollider = other.gameObject.GetComponent<IDestroyable>();
         objectCollider?.HandleSpikeCollision();
     }
 }

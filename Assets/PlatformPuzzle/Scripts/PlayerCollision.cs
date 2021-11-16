@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 
-public class PlayerCollision : MonoBehaviour, IObjectCollider
+public class PlayerCollision : MonoBehaviour, IDestroyable
 {
     void OnTriggerEnter(Collider other)
     {
@@ -11,5 +12,6 @@ public class PlayerCollision : MonoBehaviour, IObjectCollider
     public void HandleSpikeCollision()
     {
         gameObject.SetActive(false);
+        FindObjectOfType<PlayerCollisionHandler>().EndGame();
     }
 }

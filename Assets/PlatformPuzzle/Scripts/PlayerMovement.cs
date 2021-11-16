@@ -15,9 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
     public bool isGrounded;
-    public GameObject gameOverUI;
     float moveSpeed = 3f;
-    float rotationSpeed = 15f;
 
     private void Awake()
     {

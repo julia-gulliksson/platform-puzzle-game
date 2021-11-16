@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         GameEventsManager.current.onGameOver -= ShowGameOverUI;
     }
 
-    void ShowGameOverUI()
+    public void ShowGameOverUI()
     {
         gameOverUI.SetActive(true);
     }
