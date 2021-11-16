@@ -14,7 +14,6 @@ public class WallMovement : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log(GameEventsManager.current + " GAME EVENTS MANAGER");
         GameEventsManager.current.onPlatformTriggered += MovePlatform;
     }
 

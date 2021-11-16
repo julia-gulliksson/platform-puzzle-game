@@ -60,13 +60,8 @@ public class PlayerMovement : MonoBehaviour
         moveVector = new Vector3(direction.x * moveSpeed, rb.velocity.y, 0);
         // Make player move on the x axis
         rb.velocity = moveVector;
-        // Smooth rotate
-        if (moveVector != Vector3.zero)
-            Debug.Log(moveVector + " MOVE VECTOR");
-        if (moveVector.x != 0f)
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveVector.x, 0, 0)), Time.deltaTime * rotationSpeed);
-        }
+
+        transform.LookAt(transform.position + new Vector3(direction.x, 0.0f, 0));
     }
 
     void CheckIfGrounded()
