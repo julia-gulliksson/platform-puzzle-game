@@ -28,12 +28,11 @@ public class Rock : MonoBehaviour, IDestroyable
     public void HandleSpikeCollision()
     {
         gameObject.SetActive(false);
-        if (!hasRespawned)
-        {
-            Debug.Log("Hallå");
-            hasRespawned = true;
-            GameObject clone = Instantiate(prefab, new Vector3(initialPosition.x, initialPosition.y + heightOffset, initialPosition.z), Quaternion.identity);
-            clone.SetActive(true);
-        }
+        //if (!hasRespawned)
+        //{
+        //    Debug.Log("Hallå");
+        //    hasRespawned = true;
+        //    Instantiate(prefab, new Vector3(initialPosition.x, initialPosition.y + heightOffset, initialPosition.z), Quaternion.identity);
+        //}
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour, IDestroyable
 {
+    [SerializeField] ParticleSystem deathSplatter;
     void OnTriggerEnter(Collider other)
     {
         ICollectible collectible = other.gameObject.GetComponent<ICollectible>();
@@ -12,6 +13,8 @@ public class PlayerCollision : MonoBehaviour, IDestroyable
     public void HandleSpikeCollision()
     {
         gameObject.SetActive(false);
-        FindObjectOfType<GameManager>().ShowGameOverWithDelay();
+        Instantiate(deathSplatter, transform.position, Quaternion.identity);
+
+        //FindObjectOfType<GameManager>().ShowGameOverWithDelay();
     }
 }

@@ -14,8 +14,7 @@ public class GenerateClouds : MonoBehaviour
 
     IEnumerator GenerateCloudObjects()
     {
-        int numOfClouds = 0;
-        while (numOfClouds < 10)
+        while (cloudList.Count < 10)
         {
             float x = Random.Range(0, 30);
             float y = Random.Range(1, 7);
@@ -36,7 +35,6 @@ public class GenerateClouds : MonoBehaviour
             {
                 GameObject cloudObj = Instantiate(cloud, positioning, Quaternion.identity);
                 cloudList.Add(cloudObj);
-                numOfClouds++;
             }
 
             yield return null;
