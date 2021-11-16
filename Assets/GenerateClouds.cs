@@ -5,6 +5,7 @@ using UnityEngine;
 public class GenerateClouds : MonoBehaviour
 {
     [SerializeField] GameObject cloud;
+    private List<GameObject> cloudList = new List<GameObject>();
 
     void Start()
     {
@@ -13,13 +14,33 @@ public class GenerateClouds : MonoBehaviour
 
     IEnumerator GenerateCloudObjects()
     {
-        for (int i = 0; i < 10; i++)
+        int numOfClouds = 0;
+        while (numOfClouds < 10)
         {
             float x = Random.Range(0, 30);
             float y = Random.Range(1, 7);
             float z = Random.Range(2, 15);
-            Instantiate(cloud, new Vector3(x, y, z), Quaternion.identity);
-            yield return new WaitForSeconds(0.5f);
+            Vector3 positioning = new Vector3(x, y, z);
+
+            bool isTooClose = false;
+
+            for (int i = 0; i < cloudList.Count; i++)
+            {
+                if (Vector3.Distance(cloudList[i].transform.position, positioning) < 1.0f)
+                {
+                    isTooClose = true;
+                }
+            }
+
+            if (!isTooClose)
+            {
+                GameObject cloudObj = Instantiate(cloud, positioning, Quaternion.identity);
+                cloudList.Add(cloudObj);
+                numOfClouds++;
+            }
+
+            yield return null;
         }
+
     }
 }
