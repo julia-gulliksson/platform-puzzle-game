@@ -12,6 +12,6 @@ public class PlayerCollision : MonoBehaviour, IDestroyable
     public void HandleSpikeCollision()
     {
         gameObject.SetActive(false);
-        FindObjectOfType<PlayerCollisionHandler>().EndGame();
+        FindObjectOfType<GameManager>().ShowGameOverWithDelay();
     }
 }

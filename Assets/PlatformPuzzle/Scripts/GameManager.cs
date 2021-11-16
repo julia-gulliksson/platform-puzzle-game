@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
@@ -6,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject completeLevelUI;
     bool gameHasEnded = false;
     [SerializeField] float restartDelay = 1f;
+    [SerializeField] float gameOverUIDelay = 2f;
 
     private void OnEnable()
     {
@@ -39,5 +41,17 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel()
     {
         completeLevelUI.SetActive(true);
+    }
+
+    public void ShowGameOverWithDelay()
+    {
+        StartCoroutine(ShowGameOverUIAfterTime());
+    }
+
+    IEnumerator ShowGameOverUIAfterTime()
+    {
+        yield return new WaitForSeconds(gameOverUIDelay);
+
+        FindObjectOfType<GameManager>().ShowGameOverUI();
     }
 }
