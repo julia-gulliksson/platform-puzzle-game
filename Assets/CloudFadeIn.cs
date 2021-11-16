@@ -4,6 +4,8 @@ using UnityEngine;
 public class CloudFadeIn : MonoBehaviour
 {
     Renderer[] renderers;
+    float timeout = 0.05f;
+    float fadeDurationInSeconds = 1f;
 
     void Start()
     {
@@ -13,8 +15,6 @@ public class CloudFadeIn : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-        float fadeDurationInSeconds = 1f;
-        float timeout = 0.05f;
         float fadeAmount = 1 / (fadeDurationInSeconds / timeout);
 
         for (float f = fadeAmount; f <= 1; f += fadeAmount)

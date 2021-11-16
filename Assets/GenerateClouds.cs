@@ -5,7 +5,7 @@ using UnityEngine;
 public class GenerateClouds : MonoBehaviour
 {
     [SerializeField] GameObject cloud;
-    // Start is called before the first frame update
+
     void Start()
     {
         StartCoroutine(GenerateCloudObjects());
@@ -16,10 +16,10 @@ public class GenerateClouds : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             float x = Random.Range(0, 30);
-            float y = Random.Range(0, 10);
-            float z = Random.Range(2, 10);
+            float y = Random.Range(1, 7);
+            float z = Random.Range(2, 15);
             Instantiate(cloud, new Vector3(x, y, z), Quaternion.identity);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }
