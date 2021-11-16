@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class GameEventsManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class GameEventsManager : MonoBehaviour
     public event Action onObjectPickedUp;
 
     public event Action<bool, int> onPlatformTriggered;
+
+    public event Action onGameOver;
 
     void Awake()
     {
@@ -57,5 +60,10 @@ public class GameEventsManager : MonoBehaviour
     public void PlatformTriggered(bool entered, int id)
     {
         onPlatformTriggered?.Invoke(entered, id);
+    }
+
+    public void GameOver()
+    {
+        onGameOver?.Invoke();
     }
 }

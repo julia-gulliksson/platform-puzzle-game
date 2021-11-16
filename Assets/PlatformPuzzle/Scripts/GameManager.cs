@@ -2,13 +2,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
-    public GameObject completeLevelUI;
+    [SerializeField] GameObject gameOverUI;
+    [SerializeField] GameObject completeLevelUI;
     bool gameHasEnded = false;
     [SerializeField] float restartDelay = 1f;
 
+    private void OnEnable()
+    {
+        GameEventsManager.current.onGameOver += ShowGameOverUI;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.current.onGameOver -= ShowGameOverUI;
+    }
+
+    void ShowGameOverUI()
+    {
+        gameOverUI.SetActive(true);
+    }
+
     public void EndGame()
     {
-        if(gameHasEnded == false)
+        if (gameHasEnded == false)
         {
             gameHasEnded = true;
             Invoke("Restart", restartDelay);

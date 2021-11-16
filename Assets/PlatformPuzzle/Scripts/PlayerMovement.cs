@@ -61,9 +61,11 @@ public class PlayerMovement : MonoBehaviour
         // Make player move on the x axis
         rb.velocity = moveVector;
         // Smooth rotate
+        if (moveVector != Vector3.zero)
+            Debug.Log(moveVector + " MOVE VECTOR");
         if (moveVector.x != 0f)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveVector.x, 0, 0)), Time.deltaTime * rotationSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(new Vector3(moveVector.x, 0, 0)), Time.deltaTime * rotationSpeed);
         }
     }
 
@@ -85,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         if (rb.position.y <= -1.4f)
         {
             // Player has fallen off the edge, show Game over ui
-            gameOverUI.SetActive(true);
+            GameEventsManager.current.GameOver();
         }
     }
 

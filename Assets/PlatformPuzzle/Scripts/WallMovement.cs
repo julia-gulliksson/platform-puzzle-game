@@ -10,10 +10,15 @@ public class WallMovement : MonoBehaviour
     void Start()
     {
         animationController = GetComponent<Animator>();
+    }
+
+    void OnEnable()
+    {
+        Debug.Log(GameEventsManager.current + " GAME EVENTS MANAGER");
         GameEventsManager.current.onPlatformTriggered += MovePlatform;
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         GameEventsManager.current.onPlatformTriggered -= MovePlatform;
     }
