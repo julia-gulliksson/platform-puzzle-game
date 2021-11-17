@@ -40,7 +40,7 @@ public class PickUpObjects : MonoBehaviour
         pickUp.Disable();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if ((!playerMovement.isGrounded && heldObject != null))
         {

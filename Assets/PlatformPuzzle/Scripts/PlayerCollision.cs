@@ -15,6 +15,6 @@ public class PlayerCollision : MonoBehaviour, IDestroyable
         gameObject.SetActive(false);
         Instantiate(deathSplatter, transform.position, Quaternion.identity);
 
-        //FindObjectOfType<GameManager>().ShowGameOverWithDelay();
+        FindObjectOfType<GameManager>().ShowGameOverWithDelay();
     }
 }
