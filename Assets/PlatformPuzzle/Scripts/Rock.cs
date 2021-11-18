@@ -4,10 +4,16 @@ public class Rock : MonoBehaviour, IDestroyable
 {
     bool destroyed = false;
     [SerializeField] Vector3 initialPosition;
+    Vector3 initialScale;
     [SerializeField] GameObject prefab;
     [SerializeField] float heightOffset = 0.7f;
-    bool hasRespawned = false;
     float destroyPoint = 5f;
+    [SerializeField] ParticleSystem deathParticles;
+
+    private void Start()
+    {
+        initialScale = transform.localScale;
+    }
 
     void Update()
     {
@@ -20,19 +26,17 @@ public class Rock : MonoBehaviour, IDestroyable
 
     void RespawnCube()
     {
-        Instantiate(prefab, new Vector3(initialPosition.x, initialPosition.y + heightOffset, initialPosition.z), Quaternion.identity);
+        GameObject newRock = Instantiate(prefab, new Vector3(initialPosition.x, initialPosition.y + heightOffset, initialPosition.z), Quaternion.identity);
+        newRock.transform.SetParent(GameObject.FindGameObjectWithTag("RockParent").transform);
+        newRock.GetComponent<Rigidbody>().isKinematic = false;
+        newRock.transform.localScale = initialScale;
         destroyed = true;
         Destroy(gameObject);
     }
 
     public void HandleSpikeCollision()
     {
-        gameObject.SetActive(false);
-        //if (!hasRespawned)
-        //{
-        //    Debug.Log("Hallå");
-        //    hasRespawned = true;
-        //    Instantiate(prefab, new Vector3(initialPosition.x, initialPosition.y + heightOffset, initialPosition.z), Quaternion.identity);
-        //}
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
+        RespawnCube();
     }
 }

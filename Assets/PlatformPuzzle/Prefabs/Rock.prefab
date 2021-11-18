@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d06eba4ffb761c44a19256b3dfd2df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPosition: {x: 0, y: 0, z: 0}
+  initialPosition: {x: 17.45, y: 0.66, z: 0}
   prefab: {fileID: 5046655300205154504}
   heightOffset: 0.7
+  deathParticles: {fileID: 8550959550313125223, guid: 570d71715c8c0f84da4a3aed41c23ebd, type: 3}
