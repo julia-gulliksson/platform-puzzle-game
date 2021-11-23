@@ -3,7 +3,7 @@ using UnityEngine;
 public class Rock : MonoBehaviour, IDestroyable
 {
     bool destroyed = false;
-    Vector3 initialPosition;
+    [SerializeField] Vector3 initialPosition;
     Vector3 initialScale;
     [SerializeField] float destroyPoint = 5f;
     [SerializeField] GameObject prefab;
@@ -13,7 +13,6 @@ public class Rock : MonoBehaviour, IDestroyable
     private void Start()
     {
         initialScale = transform.localScale;
-        initialPosition = transform.position;
     }
 
     void Update()

@@ -83,9 +83,10 @@ public class PickUpObjects : MonoBehaviour
         Physics.IgnoreCollision(objectToPickUp.GetComponent<Collider>(), playerCollider);
 
         // Make object possible to pick up
-        Rigidbody objectRb;
-        objectRb = objectToPickUp.GetComponent<Rigidbody>();
-        objectToPickUp.transform.parent = playerTransform;
+        Rigidbody objectRb = objectToPickUp.GetComponent<Rigidbody>();
+
+        objectToPickUp.transform.SetParent(playerTransform);
+        objectToPickUp.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
         objectRb.isKinematic = true;
 
         // Position object correctly
@@ -100,6 +101,7 @@ public class PickUpObjects : MonoBehaviour
             GameEventsManager.current.PickedUpObject();
         }
         hasPickedUp = true;
+
     }
 
     void HandleButtonUp(InputAction.CallbackContext context)

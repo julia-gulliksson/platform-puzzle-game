@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5046655300205154506}
   - component: {fileID: 5046655300205154503}
   - component: {fileID: 3191437152944072889}
+  - component: {fileID: 3601955282140767024}
   m_Layer: 9
   m_Name: Rock
   m_TagString: Untagged
@@ -126,7 +127,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d06eba4ffb761c44a19256b3dfd2df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPosition: {x: 17.45, y: 0.66, z: 0}
+  destroyPoint: 5
   prefab: {fileID: 5046655300205154504}
   heightOffset: 0.7
   deathParticles: {fileID: 8550959550313125223, guid: 570d71715c8c0f84da4a3aed41c23ebd, type: 3}
+--- !u!95 &3601955282140767024
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5046655300205154504}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4d17b0a22a97b2641bef3beabbc00e2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
